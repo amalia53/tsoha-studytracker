@@ -11,9 +11,7 @@ Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosan
 
 ### Etusivu
 
-Etusivulla esitellään sovelluksen toiminta ja voidaan siirtyä kirjautumiseen tai opiskelijan tai opettajan rekisteröitymiseen.
-
-### Kirjautuminen
+Etusivulla esitellään sovelluksen toiminta ja voidaan kirjautua palveluun. Lisäksi löytyy linkki opiskelijan ja opettajan rekisteröitymiseen.
 
 Mikäli käyttäjä on rekisteröitynyt, hän voi kirjautua käyttäjätunnuksellaan ja salasanalla sovellukseen.
 
