@@ -14,8 +14,8 @@ Mikäli opiskelija on rekisteröitynyt, hän voi kirjautua käyttäjätunnuksell
 
 ### Rekisteröityminen
 
-Uusi opiskelija voi luoda tunnuksen antamalla uuden käyttäjätunnuksen (esim. opiskelijanumero), salasanan ja salasanan uudestaan. Käyttäjätunnus täytyy olla
-uniikki, kuten opiskelijanumero.
+Uusi opiskelija voi luoda tunnuksen antamalla uuden käyttäjätunnuksen, salasanan ja samans salasanan uudestaan. Käyttäjätunnus täytyy olla
+uniikki, tähän sopii hyvin esimerkiksi opiskelijanumero.
 
 ### Oma sivu
 
