@@ -1,6 +1,6 @@
 # Study Tracker
 
-Study tracker on opintojen suunnittelua ja seuraamista helpottava sovellus. Sovelluksessa opiskelija voi lisätä ja seurata eri kursseihin käytettyä aikaa. 
+Study Tracker on opintojen suunnittelua ja seuraamista helpottava sovellus. Sovelluksessa opiskelija voi lisätä ja seurata eri kursseihin käytettyä aikaa. 
 Lisäksi opiskelija voi asettaa tavoitteita ja seurata tavoitteissa pysymistä. Oppilas voi myös nähdä kurssin suoritettuaan saamansa arvosanan kurssista.
 Sovelluksessa voi tarkastella kaikkia kursseja ja nähdä kaikkien opiskelijoiden kurssiin opiskeluun käytetyn ajan keskiarvon. 
 Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosanat. Lisäksi opettaja näkee omista opetetuista kursseistaan käytetyn ajan ja arvosanojen keskiarvon.
