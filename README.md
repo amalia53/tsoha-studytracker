@@ -1,9 +1,9 @@
 # Study tracker
 
 Study tracker on opintojen suunnittelua ja seuraamista helpottava sovellus. Sovelluksessa opiskelija voi lisätä ja seurata eri kursseihin käytettyä aikaa. 
-Lisäksi opiskelija voi asettaa tavoitteita ja luoda opintosuunnitelman viikolle ja seurata, miten tavoitteissa on pysytty. Oppilas voi myös nähdä kurssin suoritettuuaan kurssin arvosanan.
+Lisäksi opiskelija voi asettaa tavoitteita ja seurata tavoitteissa pysymistä. Oppilas voi myös nähdä kurssin suoritettuaan saamansa arvosanan kurssista.
 Sovelluksessa voi tarkastella kaikkia kursseja ja nähdä kaikkien opiskelijoiden kurssiin opiskeluun käytetyn ajan keskiarvon. 
-Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosanat. Lisäksi opettaja näkee omien suoritettujen kurssiensa käytetyn ajan ja arvosanojen keskiarvon.
+Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosanat. Lisäksi opettaja näkee omista opetetuista kursseistaan käytetyn ajan ja arvosanojen keskiarvon.
 
 ### Etusivu
 
@@ -36,7 +36,7 @@ Luo viikolle opintotavoite ja tarkasta miten tavoitteessa on pysytty. Lisää uu
 
 ### Tilastot
 
-Kurssikohtaiset tilastot eri ajanjaksoilta opiskelujen määristä.
+Kurssikohtaiset tilastot eri ajanjaksoilta opiskelujen määristä. Arvosana näkyy täällä, kun kurssi on suoritettu.
 
 ### Kurssit
 
