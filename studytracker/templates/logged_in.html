@@ -1,0 +1,11 @@
+{% if session.username %}
+<p>
+Olet kirjautunut nimellä {{ session.username }}
+</p>
+<a href="http://127.0.0.1:5000/student">Oma sivu</a>
+<p>
+<a href="/logout">Kirjaudu ulos</a>
+{% else %}
+<a href="/">Palaa etusivulle</a>
+{% endif %}
+

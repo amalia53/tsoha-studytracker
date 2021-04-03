@@ -1,0 +1,10 @@
+<title>Kurssit</title>
+<h1>Kurssit</h1>
+<p>
+<hr>
+{% for course in courses %}
+{{ course[0] }}
+<hr>
+{% endfor %}
+<a href="http://127.0.0.1:5000/addcourse">Lisää kurssi</a>
+<p>
