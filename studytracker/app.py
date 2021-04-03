@@ -88,7 +88,6 @@ def start_course():
 	sql = "SELECT id FROM students WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	student_id = result.fetchone()
-	print(student_id)
 	print(course_id)
 	return redirect("/plan")
 	
