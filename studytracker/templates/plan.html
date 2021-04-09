@@ -1,13 +1,29 @@
 <title>Sunnitelma</title>
 <h1>Suunnitelma</h1>
 <p>
-<a href="http://127.0.0.1:5000/startcourse">Aloita kurssi</a>
+<table>
+<tr>
+  <th>Omat kurssit</th>
+  <th>Tavoite</th>
+  <th>Opiskeltu</th>
+  <th>Tehtynä</th>
+<tr>
+{% for i in range(studentcourses|length) %}
+<tr>
+  <td>{{ studentcourses[i][0] }}</td>
+  <td>{{ goals[i][0] }} </td>
+  <td>{{ studied[i][0] }}</td>
+  <td>{{ done[i] }} %</td>
+<tr>
+{% endfor %}
+</table>
+<p>
 <form action="/startcourse" method="POST">
-<title>Aloita kurssi</title>
+<h2>Aloita uusi kurssi</h2>
 Valitse kurssi: 
 <select name="course" method="GET" action="/">
     {% for course in courses %}
-    <option value= "{{ course }}" SELECTED> {{ course }}
+    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
     {% endfor %}
 </select>
 <p>
@@ -16,9 +32,5 @@ Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
 <p>
 <input type="submit" value="Aloita kurssi">
 </form>
-Omat kurssit:<br>
-<hr>
-{% for course in studentcourses %}
-{{ course[0] }}
-<hr>
-{% endfor %}
+<p>
+<a href="http://127.0.0.1:5000/student">Oma sivu</a>

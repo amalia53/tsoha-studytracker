@@ -1,0 +1,18 @@
+<title>Opiskele</title>
+<h1>Opiskele</h1>
+<p>
+<form action="/studied" method="POST">
+Kauanko opiskelit?
+<input type="number" name="studied" size="3"> minuuttia
+<p>
+Mitä kurssia?
+<select name="course" method="GET" action="/">
+    {% for course in courses %}
+    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% endfor %}
+</select> 
+<p>
+<input type="submit" value="Lisää">
+<form>
+<p>
+<a href="http://127.0.0.1:5000/student">Oma sivu</a>
