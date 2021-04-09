@@ -11,7 +11,8 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-	count = 0
+	result = db.session.execute("SELECT COUNT(*) FROM students")
+	count = result.fetchone()[0]
 	return render_template("index.html", count = count)
 
 @app.route("/login")
