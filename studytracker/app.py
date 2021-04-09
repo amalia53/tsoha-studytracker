@@ -82,8 +82,8 @@ def study():
 @app.route("/studied", methods=["POST"])
 def studied():
 	course = request.form["course"]
-	studied_min = request.form["studied"]
-	update_studies(session["username"], course, studied_min)
+	studied = request.form["studied"]
+	update_studies(session["username"], course, studied)
 	return redirect ("/study")
 	
 @app.route("/stats")
@@ -175,11 +175,11 @@ def get_students_studies(username):
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	return result.fetchall() 
 	
-def update_studies(username, course, studied_min):
+def update_studies(username, course, studied):
 	student_id = get_student_id(username)
 	course_id = get_course_id(course)
-	studied = int(studied_min) / 60
-	studied_pre = get_previous_studies(username, course, student_id, course_id)[0]
+	studied = int(studied)
+	studied_pre = get_previous_studies(username, course, student_id, course_id)[0]	
 	studied += studied_pre
 	print(studied)
 	sql = "UPDATE goals SET studied=:studied WHERE student_id=:student_id AND course_id=:course_id"
@@ -188,5 +188,5 @@ def update_studies(username, course, studied_min):
 
 def get_previous_studies(username, course, student_id, course_id):
 	sql = "SELECT studied FROM goals WHERE student_id=:student_id AND course_id=:course_id"
-	result = db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0]})
+	result = db.session.execute(sql, {"course_id":course_id[0], "student_id":student_id[0]})
 	return result.fetchone()
