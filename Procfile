@@ -1,1 +1,1 @@
-web: gunicorn studytracker/app.py:app
+web: gunicorn app:app
