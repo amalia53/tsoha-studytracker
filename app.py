@@ -80,6 +80,7 @@ def student():
 @app.route("/study")
 def study():
 	courses = get_students_courses(session["username"])
+	courses.sort()
 	return render_template("study.html", courses = courses)
 	
 @app.route("/studied", methods=["POST"])
