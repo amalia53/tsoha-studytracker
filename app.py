@@ -176,7 +176,7 @@ def get_students_studies(username):
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	return result.fetchall() 
 
-def get_done(studentcourses)
+def get_done(studentcourses):
 	done = []
 	rng = len(studentcourses)
 	for i in range(rng):
