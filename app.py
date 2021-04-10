@@ -70,13 +70,12 @@ def welcome():
 def student():	
 	username = session["username"]
 	
-	courses = get_courses_student_has_not_added(username)
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)
 	done = get_done(studentcourses, goals, studied)
 	
-	return render_template("student.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+	return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
 @app.route("/study")
 def study():
@@ -103,7 +102,7 @@ def plan():
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)
 	done = get_done(studentcourses, goals, studied)
-	
+	courses.sort()
 	return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
 @app.route("/startcourse", methods=["POST"])
@@ -121,6 +120,7 @@ def start_course():
 def courses():
 	result = db.session.execute("SELECT course FROM courses")
 	courses = result.fetchall()
+	courses.sort()
 	return render_template("courses.html", courses = courses)
 
 @app.route("/addcourse")
@@ -151,7 +151,6 @@ def get_students_courses(username):
 	sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.student_id=:student_id"
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	studentcourses = result.fetchall()
-	studentcourses.sort()
 	return studentcourses
 
 def get_courses_student_has_not_added(username):
