@@ -71,8 +71,9 @@ def welcome():
 		
 
 @app.route("/student")
-def student():
-        return render_template("student.html")
+def student():	
+	studentcourses = get_students_courses(username)
+        return render_template("student.html", studentcourses = studentcourses)
 	
 @app.route("/study")
 def study():
@@ -105,7 +106,6 @@ def plan():
 		prosent = (studied[i][0] / goals[i][0]) * 100
 		prosent = int(prosent)
 		done.append(prosent)
-	print(done)
 	
 	return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	

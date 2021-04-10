@@ -1,6 +1,23 @@
 <title>Opiskelijan sivu</title>
 <h1>Oma sivu</h1>
 <p>
+<table>
+<tr>
+  <th>Omat kurssit</th>
+  <th>Tavoite</th>
+  <th>Opiskeltu</th>
+  <th>Tehtynä</th>
+<tr>
+{% for i in range(studentcourses|length) %}
+<tr>
+  <td>{{ studentcourses[i][0] }}</td>
+  <td>{{ goals[i][0] }} </td>
+  <td>{{ studied[i][0] }}</td>
+  <td>{{ done[i] }} %</td>
+<tr>
+{% endfor %}
+</table>
+<p>
 <a href="/study">Opiskele</a>
 <p>
 <a href="/plan">Suunnittele</a>
