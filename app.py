@@ -78,7 +78,7 @@ def student():
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)
-	done = get_done(studentcourses)
+	done = get_done(studentcourses, goals, studied)
 	
 	return render_template("student.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
@@ -106,7 +106,7 @@ def plan():
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)
-	done = get_done(studentcourses)
+	done = get_done(studentcourses, goals, studied)
 	
 	return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
@@ -176,7 +176,7 @@ def get_students_studies(username):
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	return result.fetchall() 
 
-def get_done(studentcourses):
+def get_done(studentcourses, goals, studied):
 	done = []
 	rng = len(studentcourses)
 	for i in range(rng):
