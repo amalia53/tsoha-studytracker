@@ -9,19 +9,25 @@ Sovelluksessa voi tarkastella kaikkia kursseja ja nähdä kaikkien opiskelijoide
 
 Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosanat. Lisäksi opettaja näkee omista opetetuista kursseistaan käytetyn ajan ja arvosanojen keskiarvon.
 
-Herokussa olevassa versiossa voi tällä hetkellä rekisteröityä ja kirjautua opiskelijana. Opiskelija voi selata ja lisätä kursseja sovellukseen, valita kursseja opiskeltavaksi, suunnnitella kurssin opiskeluun käytettävän ajan ja lisätä opiskeltuja tunteja.
+**Herokussa olevassa versiossa voi tällä hetkellä rekisteröityä ja kirjautua opiskelijana. Opiskelija voi selata ja lisätä kursseja sovellukseen, valita kursseja opiskeltavaksi, suunnnitella kurssin opiskeluun käytettävän ajan ja lisätä opiskeltuja tunteja.**
+
+## Sovelluksen käyttö
+
+Pääset käyttämään sovellusta osoitteesta [https://tsoha-studytracker.herokuapp.com/](https://tsoha-studytracker.herokuapp.com/)
 
 ### Etusivu
 
-Etusivulla esitellään sovelluksen toiminta ja voidaan kirjautua palveluun. Lisäksi löytyy linkki opiskelijan ja opettajan rekisteröitymiseen. Herokussa tällä hetkellä vain opiskelijan rekisteröityminen.
+Etusivulla esitellään sovelluksen toiminta ja voidaan kirjautua palveluun. Lisäksi löytyy linkki opiskelijan ja opettajan rekisteröitymiseen. 
 
 Mikäli käyttäjä on rekisteröitynyt, hän voi kirjautua käyttäjätunnuksellaan ja salasanalla sovellukseen.
+
+**Herokussa tällä hetkellä opiskelijan rekisteröityminen ja kirjautuminen.**
 
 ## Opiskelija
 
 ### Rekisteröityminen
 
-Uusi opiskelija voi luoda tunnuksen antamalla uuden käyttäjätunnuksen, salasanan ja samans salasanan uudestaan. Käyttäjätunnus täytyy olla
+Uusi opiskelija voi luoda tunnuksen antamalla uuden käyttäjätunnuksen, salasanan ja saman salasanan uudestaan. Käyttäjätunnus täytyy olla
 uniikki, tähän sopii hyvin esimerkiksi opiskelijanumero.
 
 ### Oma sivu
@@ -32,29 +38,31 @@ Lisäksi sivulta löytyy linkit sivuille: "opiskele", "suunnittele", "tilastot" 
 
 ### Opiskele
 
-Lisää kurssien opiskeluihin käytettyä aikaa tai aloita opintosessio. Herokussa voi tällä hetkellä vain lisätä tunteja.
+Lisää kurssien opiskeluihin käytettyä aikaa tai aloita opintosessio. 
+
+**Herokussa voi tällä hetkellä vain lisätä tunteja.**
 
 ### Suunnittele
 
 Luo viikolle opintotavoite ja tarkasta miten tavoitteessa on pysytty. Lisää uusi kurssi tai merkitse käymäsi kurssi suoritetuksi. 
 
-Herokussa voi tällä hetkellä lisätä uuden kurssin ja sille opiskelutavoitteen ja seurata kurssin tavoitteen edistymistä.
+**Herokussa voi tällä hetkellä lisätä uuden kurssin ja sille opiskelutavoitteen ja seurata kurssin tavoitteen edistymistä.**
 
 ### Tilastot
 
 Kurssikohtaiset tilastot eri ajanjaksoilta opiskelujen määristä. Arvosana näkyy täällä, kun kurssi on suoritettu.
 
-Ei vielä toteutettu Herokussa.
+**Ei vielä toteutettu Herokussa.**
 
 ### Kurssit
 
 Lista kaikista sovelluksessa olevista kursseista ja niihin käytettyjen opiskelutuntien keskiarvosta (kun kurssi on kokonaan suoritettu). Opiskelija tai opettaja voivat lisätä kurssin listaan.
 
-Herokussa tällä hetkellä voi selata kurssien nimiä ja lisätä uuden kurssin listaan.
+**Herokussa tällä hetkellä voi selata kurssien nimiä ja lisätä uuden kurssin listaan.**
 
 ## Opettaja
 
-Ei vielä toteutettu Herokussa.
+**Ei vielä toteutettu Herokussa.**
 
 ### Rekisteröityminen
 
