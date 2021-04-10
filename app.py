@@ -72,11 +72,6 @@ def welcome():
 
 @app.route("/student")
 def student():	
-	studentcourses = get_students_courses(session["username"])
-	return render_template("student.html", studentcourses = studentcourses)
-	
-@app.route("/study")
-def study():
 	username = session["username"]
 	
 	courses = get_courses_student_has_not_added(username)
@@ -85,7 +80,12 @@ def study():
 	studied = get_students_studies(username)
 	done = get_done(studentcourses)
 	
-	return render_template("study.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+	return render_template("student.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+	
+@app.route("/study")
+def study():
+	courses = get_students_courses(session["username"])
+	return render_template("study.html", courses = courses)
 	
 @app.route("/studied", methods=["POST"])
 def studied():
