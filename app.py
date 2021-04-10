@@ -73,7 +73,7 @@ def welcome():
 @app.route("/student")
 def student():	
 	studentcourses = get_students_courses(username)
-        return render_template("student.html", studentcourses = studentcourses)
+	return render_template("student.html", studentcourses = studentcourses)
 	
 @app.route("/study")
 def study():
