@@ -8,11 +8,25 @@ Sovelluksessa opiskelija voi lisätä ja seurata eri kursseihin käytettyä aika
 
 Sovellukseen voi tulevaisuudessa kirjautua myös opettajana.
 <p>
-Sovelluksessa on käyttäjiä: {{ count }}
+Sovelluksessa on tällä hetkellä {{ count }} käyttäjää.
 <p>
-Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>
+
+<form action="/loggedin" method="POST">
+<title>Login</title>
+<h1>Kirjaudu sisään</h1>
 <p>
-Oletko opettaja? Rekisteröidy <a href="/teachreg">täällä</a>
+Käyttäjätunnus: <input type=text name="username" size="30"> 
 <p>
-Oleko jo käyttäjä? Kirjaudu sisään <a href="/login">tästä</a>
+Salasana: <input type="password" name="password" size=30>
+<p>
+<input type="submit" value="Kirjaudu">
+</form>
+
+<p>
+<h3>Eikö sinulla ole veilä tunnusta?</h3>
+Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>!
+<p>
+Oletko opettaja? Rekisteröidy <a href="/teachreg">täällä</a>!
+<p>
+Oleko jo käyttäjä? Kirjaudu sisään <a href="/login">tästä</a>!
 <p>
