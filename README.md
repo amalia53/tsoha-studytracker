@@ -13,7 +13,7 @@ Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosan
 
 ## Sovelluksen käyttö
 
-Pääset käyttämään sovellusta osoitteesta [https://tsoha-studytracker.herokuapp.com/!](https://tsoha-studytracker.herokuapp.com/)
+Pääset käyttämään sovellusta osoitteesta [https://tsoha-studytracker.herokuapp.com/](https://tsoha-studytracker.herokuapp.com/)
 
 ### Etusivu
 
