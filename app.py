@@ -5,13 +5,14 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = getenv("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///amalia"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-	count = 0
+	result = db.session.execute("SELECT COUNT(*) FROM students")
+	count = result.fetchone()[0]
 	return render_template("index.html", count = count)
 
 @app.route("/login")
