@@ -12,7 +12,7 @@ Sovelluksessa on tällä hetkellä {{ count }} käyttäjää.
 <p>
 
 {% if session.username %}
-Olet kirjautunut käyttäjänä {{ session.username }} 
+<b>Olet kirjautunut käyttäjänä {{ session.username }} </b>
 <p>
 <a href="/student">Oma sivu</a>
 <p>
@@ -29,13 +29,13 @@ Salasana: <input type="password" name="password" size=30>
 <p>
 <input type="submit" value="Kirjaudu">
 </form>
-{% endif %}
 <p>
-<h3>Eikö sinulla ole veilä tunnusta?</h3>
+<h3>Eikö vielä tunnusta?</h3>
 Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>!
 <p>
 Oletko opettaja? Rekisteröidy <a href="/teachreg">täällä</a>!
 <p>
 Oleko jo käyttäjä? Kirjaudu sisään <a href="/login">tästä</a>!
 <p>
+{% endif %}
 
