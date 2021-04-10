@@ -11,6 +11,10 @@ Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosan
 
 **Herokussa olevassa versiossa voi tällä hetkellä rekisteröityä ja kirjautua opiskelijana. Opiskelija voi selata ja lisätä kursseja sovellukseen, valita kursseja opiskeltavaksi, suunnnitella kurssin opiskeluun käytettävän ajan ja lisätä opiskeltuja tunteja.**
 
+## Sovelluksen käyttö
+
+Pääset käyttämään sovellusta osoitteesta [https://tsoha-studytracker.herokuapp.com/!](https://tsoha-studytracker.herokuapp.com/)
+
 ### Etusivu
 
 Etusivulla esitellään sovelluksen toiminta ja voidaan kirjautua palveluun. Lisäksi löytyy linkki opiskelijan ja opettajan rekisteröitymiseen. 
