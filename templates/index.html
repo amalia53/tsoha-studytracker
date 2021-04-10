@@ -19,7 +19,7 @@ Sovelluksessa on tällä hetkellä {{ count }} käyttäjää.
 <a href="/logout">Kirjaudu ulos</a>
 <p>
 {% else %}
-<form action="/loggedin" method="POST">
+<form action="/login" method="POST">
 <title>Login</title>
 <h1>Kirjaudu sisään</h1>
 <p>
@@ -34,8 +34,6 @@ Salasana: <input type="password" name="password" size=30>
 Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>!
 <p>
 Oletko opettaja? Rekisteröidy <a href="/teachreg">täällä</a>!
-<p>
-Oleko jo käyttäjä? Kirjaudu sisään <a href="/login">tästä</a>!
 <p>
 {% endif %}
 

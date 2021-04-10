@@ -15,12 +15,8 @@ def index():
 	count = result.fetchone()[0]
 	return render_template("index.html", count = count)
 
-@app.route("/login")
+@app.route("/login", methods=["POST"])
 def login():
-        return render_template("login.html")
-
-@app.route("/loggedin", methods=["POST"])
-def logged_in():
 	username = request.form["username"]
 	pw = request.form["password"]
 	sql = "SELECT pw FROM students WHERE username=:username"
