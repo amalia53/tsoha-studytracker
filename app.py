@@ -77,8 +77,15 @@ def student():
 	
 @app.route("/study")
 def study():
-	courses = get_students_courses(session["username"])
-	return render_template("study.html", courses = courses)
+	username = session["username"]
+	
+	courses = get_courses_student_has_not_added(username)
+	studentcourses = get_students_courses(username)
+	goals = get_students_goals(username)
+	studied = get_students_studies(username)
+	done = get_done(studentcourses)
+	
+	return render_template("study.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
 @app.route("/studied", methods=["POST"])
 def studied():
@@ -99,13 +106,7 @@ def plan():
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)
-	
-	done = []
-	rng = len(studentcourses)
-	for i in range(rng):
-		prosent = (studied[i][0] / goals[i][0]) * 100
-		prosent = int(prosent)
-		done.append(prosent)
+	done = get_done(studentcourses)
 	
 	return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
@@ -174,6 +175,15 @@ def get_students_studies(username):
 	sql = "SELECT studied FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.student_id=:student_id"
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	return result.fetchall() 
+
+def get_done(studentcourses)
+	done = []
+	rng = len(studentcourses)
+	for i in range(rng):
+		prosent = (studied[i][0] / goals[i][0]) * 100
+		prosent = int(prosent)
+		done.append(prosent)
+	return done
 	
 def update_studies(username, course, studied):
 	student_id = get_student_id(username)
