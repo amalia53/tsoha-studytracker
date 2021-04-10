@@ -151,7 +151,7 @@ def get_students_courses(username):
 	sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.student_id=:student_id"
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	studentcourses = result.fetchall()
-	
+	studentcourses.sort()
 	return studentcourses
 
 def get_courses_student_has_not_added(username):
