@@ -38,7 +38,7 @@ Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
 <h3>Merkitse kurssi suoritetuksi</h3>
 Suoritettu kurssi: 
 <select name="course" method="GET" action="/" required>
-    {% for course in courses %}
+    {% for course in studentcourses %}
     <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
     {% endfor %}
 </select> 
