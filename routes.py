@@ -16,7 +16,7 @@ def login():
 	pw = request.form["password"]
 	if users.login == invalid_username:
 		return render_template("invalid.html", invalid = "käyttäjätunnus")
-	if else users.login == invalid_pw:
+	elif users.login == invalid_pw:
 		return render_template("invalid.html", invalid = "salasana")
 
 	else:
