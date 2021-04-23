@@ -42,21 +42,12 @@ def teach_reg():
 @app.route("/welcome", methods=["POST"])
 def welcome():
 	username = request.form["username"]
-	
-	sql = "SELECT username FROM students WHERE username=:username"
-	result = db.session.execute(sql, {"username":username})
-	user = result.fetchone()
-	if user == None:
-		pw = request.form["password"]
-		verification = request.form["verification"]
-		if pw == verification:
-			hash_pw = generate_password_hash(pw)
-			sql = "INSERT INTO students (username, pw) VALUES (:username, :pw)"
-			db.session.execute(sql, {"username":username, "pw":hash_pw})
-			db.session.commit()
-			return render_template("welcome.html", username = username)
-		else:
-			return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
+	pw = request.form["password"]
+	verification = request.form["verification"]
+	if student_reg(username, pw, verification) == "ok":
+		return render_template("welcome.html", username = username)
+	elif student_reg(username, pw, verification) == "no_match":
+		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
 	else:
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
 		
