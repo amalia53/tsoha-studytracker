@@ -22,6 +22,7 @@ def login():
 		return render_template("invalid.html", invalid = "salasana")
 
 	else:
+		session["username"] = username
 		return redirect("/student")
 
 
