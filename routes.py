@@ -84,7 +84,6 @@ def stats():
 @app.route("/plan")
 def plan():	
 	username = session["username"]
-	
 	courses = get_courses_student_has_not_added(username)
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
@@ -106,7 +105,11 @@ def start_course():
 
 @app.route("/coursedone", methods=["POST"])
 def course_done():
-	student.finish_course(session["username"], request.form["course"])
+	course_id = get_course_id(session["username"])
+	student_id = get_student_id(request.form["course"])
+	sql = "UPDATE studentcourses SET ongoing=:ongoing WHERE student_id=:student_id AND course_id=:course_id"
+	db.session.execute(sql, {"ongoing":false})
+	db.session.commit()
 	return redirect("/plan")
 	
 	
