@@ -16,9 +16,9 @@ def index():
 def login():
 	username = request.form["username"]
 	pw = request.form["password"]
-	if users.login == invalid_username:
+	if users.login == "invalid_username":
 		return render_template("invalid.html", invalid = "käyttäjätunnus")
-	elif users.login == invalid_pw:
+	elif users.login == "invalid_pw":
 		return render_template("invalid.html", invalid = "salasana")
 
 	else:
