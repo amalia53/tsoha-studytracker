@@ -22,13 +22,12 @@ def login():
 		return render_template("invalid.html", invalid = "salasana")
 
 	else:
-		session["username"] = username
 		return redirect("/student")
 
 
 @app.route("/logout")
 def logout():
-    del session["username"]
+    del users.get_session()
     return redirect("/")
 
 @app.route("/stureg")
@@ -62,8 +61,7 @@ def welcome():
 
 @app.route("/student")
 def student():	
-	username = session["username"]
-	
+	username = get_session()
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)

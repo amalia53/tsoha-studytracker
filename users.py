@@ -14,4 +14,7 @@ def login(username, pw):
 		else:
 			return "invalid_pw"
 			
+def get_session()
+	return session["username"]
+
 
