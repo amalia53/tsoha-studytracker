@@ -8,26 +8,20 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	result = db.session.execute("SELECT COUNT(*) FROM students")
-	count = result.fetchone()[0]
-	return render_template("index.html", count = count)
+	return render_template("index.html")
 
 @app.route("/login", methods=["POST"])
 def login():
 	username = request.form["username"]
 	pw = request.form["password"]
-	sql = "SELECT pw FROM students WHERE username=:username"
-	result = db.session.execute(sql, {"username":username})
-	user = result.fetchone() 
-	if user == None:
+	if users.login == invalid_username:
 		return render_template("invalid.html", invalid = "käyttäjätunnus")
+	if else users.login == invalid_pw:
+		return render_template("invalid.html", invalid = "salasana")
+
 	else:
-		hash_pw = user[0]
-		if check_password_hash(hash_pw, pw):
-			session["username"] = username
-			return redirect("/student")
-		else:
-			return render_template("invalid.html", invalid = "salasana")
+		return redirect("/student")
+
 
 @app.route("/logout")
 def logout():

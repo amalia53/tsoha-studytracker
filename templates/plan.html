@@ -19,7 +19,7 @@
 </table>
 <p>
 <form action="/startcourse" method="POST">
-<h2>Aloita uusi kurssi</h2>
+<h3>Aloita uusi kurssi</h3>
 Valitse kurssi: 
 <select name="course" method="GET" action="/">
     {% for course in courses %}
@@ -31,6 +31,16 @@ Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
 <input type="number" name="goal" size="3" required>
 <p>
 <input type="submit" value="Aloita kurssi">
+</form>
+<p>
+<form action="/startcourse" method="POST">
+<h3>Merkitse kurssi suoritetuksi</h3>
+Suoritettu kurssi: 
+<select name="course" method="GET" action="/" required>
+    {% for course in courses %}
+    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% endfor %}
+</select> 
 </form>
 <p>
 <a href="/student">Oma sivu</a>
