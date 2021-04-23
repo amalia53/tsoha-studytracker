@@ -22,13 +22,13 @@ def login():
 		return render_template("invalid.html", invalid = "salasana")
 
 	else:
+		session["username"] = username
 		return redirect("/student")
 
 
 @app.route("/logout")
 def logout():
-    username = users.get_session()
-    del username
+    del session["username"]
     return redirect("/")
 
 @app.route("/stureg")
@@ -44,9 +44,9 @@ def welcome():
 	username = request.form["username"]
 	pw = request.form["password"]
 	verification = request.form["verification"]
-	if student_reg(username, pw, verification) == "ok":
+	if users.student_reg(username, pw, verification) == "ok":
 		return render_template("welcome.html", username = username)
-	elif student_reg(username, pw, verification) == "no_match":
+	elif users.student_reg(username, pw, verification) == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
 	else:
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
@@ -54,7 +54,7 @@ def welcome():
 
 @app.route("/student")
 def student():	
-	username = users.get_session()
+	username = session["username"]
 	studentcourses = get_students_courses(username)
 	goals = get_students_goals(username)
 	studied = get_students_studies(username)

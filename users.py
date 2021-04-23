@@ -1,4 +1,3 @@
-from flask import Flask, session
 from db import db
 
 def login(username, pw):
@@ -10,13 +9,9 @@ def login(username, pw):
 	else:
 		hash_pw = user[0]
 		if check_password_hash(hash_pw, pw):
-			session["username"] = username
 			return "ok"
 		else:
 			return "invalid_pw"
-			
-def get_session():
-	return session["username"]
 
 def student_reg(usename, pw, verication):
 	sql = "SELECT username FROM students WHERE username=:username"
