@@ -120,10 +120,6 @@ def courses():
 	courses = result.fetchall()
 	courses.sort()
 	return render_template("courses.html", courses = courses)
-
-@app.route("/addcourse")
-def add_course():
-	return render_template("add_course.html")
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
