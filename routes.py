@@ -5,6 +5,7 @@ from os import getenv
 
 
 import users
+import student
 
 app.secret_key = getenv("SECRET_KEY")
 
@@ -102,6 +103,12 @@ def start_course():
 	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0], "goal":goal, "studied":0})
 	db.session.commit()
 	return redirect("/plan")
+
+@app.route("/coursedone", methods=["POST"])
+def course_done():
+	student.course_done(session["username"], request.form["course"])
+	return redirect("/plan")
+	
 	
 @app.route("/courses")
 def courses():

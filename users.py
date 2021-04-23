@@ -14,7 +14,7 @@ def login(username, pw):
 		else:
 			return "invalid_pw"
 
-def student_reg(username, pw, verication):
+def student_reg(username, pw, verification):
 	sql = "SELECT username FROM students WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	user = result.fetchone()
