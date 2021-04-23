@@ -1,4 +1,4 @@
-import db from db
+from db import db
 
 def course_done(student, course):
 	course_id = get_course_id()
