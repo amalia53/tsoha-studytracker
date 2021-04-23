@@ -108,8 +108,8 @@ def course_done():
 	course_id = get_course_id(session["username"])
 	student_id = get_student_id(request.form["course"])
 	ongoing = "FALSE"
-	sql = "UPDATE studentcourses SET ongoing=:ongoing WHERE student_id=:student_id AND course_id=:course_id"
-	db.session.execute(sql, {"ongoing":ongoing,"student_id":student_id[0], "course_id":course_id[0]})
+	sql = "UPDATE goals SET completed to NOT completed WHERE student_id=:student_id AND course_id=:course_id"
+	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0]})
 	db.session.commit()
 	return redirect("/plan")
 	
