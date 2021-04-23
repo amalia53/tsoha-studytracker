@@ -6,6 +6,16 @@
 {{ course[0] }}
 <hr>
 {% endfor %}
-<a href="/addcourse">Lisää kurssi</a>
+<p>
+<form action="/courseadded" method="POST">
+<title>Kurssin lisäys</title>
+<h1>Lisää kurssi</h1>
+<p>
+Kurssin nimi: <input type=text name="course" size="30" required> 
+<p>
+Kurssin opettaja: <input type="text" name="teacher" size=30 required>
+<p>
+<input type="submit" value="Lisää">
+</form>
 <p>
 <a href="/student">Oma sivu</a>

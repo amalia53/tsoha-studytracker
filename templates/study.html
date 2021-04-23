@@ -3,10 +3,10 @@
 <p>
 <form action="/studied" method="POST">
 Kauanko opiskelit?
-<input type="number" name="studied" size="3"> tuntia
+<input type="number" name="studied" size="3" required> tuntia
 <p>
 Mitä kurssia?
-<select name="course" method="GET" action="/">
+<select name="course" method="GET" action="/" required>
     {% for course in courses %}
     <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
     {% endfor %}
