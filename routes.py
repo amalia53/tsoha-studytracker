@@ -107,8 +107,9 @@ def start_course():
 def course_done():
 	course_id = get_course_id(session["username"])
 	student_id = get_student_id(request.form["course"])
+	ongoing = false
 	sql = "UPDATE studentcourses SET ongoing=:ongoing WHERE student_id=:student_id AND course_id=:course_id"
-	db.session.execute(sql, {"ongoing":"false"})
+	db.session.execute(sql, {"ongoing":ongoing})
 	db.session.commit()
 	return redirect("/plan")
 	
