@@ -1,6 +1,6 @@
 from db import db
 
-def course_done(student, course):
+def course_done(username, course):
 	course_id = get_course_id(student)
 	student_id = get_student_id(course)
 	sql = "UPDATE studentcourses SET ongoing=:ongoing WHERE student_id=:student_id AND course_id=:course_id"
