@@ -106,7 +106,7 @@ def start_course():
 
 @app.route("/coursedone", methods=["POST"])
 def course_done():
-	b = student.course_done(session["username"], request.form["course"])
+	student.finish_course(session["username"], request.form["course"])
 	return redirect("/plan")
 	
 	
