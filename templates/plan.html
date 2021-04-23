@@ -33,7 +33,8 @@ Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
 <input type="submit" value="Aloita kurssi">
 </form>
 <p>
-<form action="/startcourse" method="POST">
+{% if len(studentcourses) > 0 %}
+<form action="/coursedone" method="POST">
 <h3>Merkitse kurssi suoritetuksi</h3>
 Suoritettu kurssi: 
 <select name="course" method="GET" action="/" required>
@@ -43,4 +44,5 @@ Suoritettu kurssi:
 </select> 
 </form>
 <p>
+{% endif %}
 <a href="/student">Oma sivu</a>
