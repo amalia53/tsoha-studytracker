@@ -1,9 +1,10 @@
 from app import app
 from db import db
-from users import users
 from flask import Flask, render_template, redirect, request, session
 from os import getenv
 from werkzeug.security import check_password_hash, generate_password_hash
+
+import users
 
 app.secret_key = getenv("SECRET_KEY")
 
