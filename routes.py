@@ -108,7 +108,7 @@ def start_course():
 def course_done():
 	username = session["username"]
 	course = request.form["course"]
-	student.course_done(username, course)
+	student.get_student_id(username)
 	return redirect("/plan")
 	
 	
