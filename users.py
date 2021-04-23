@@ -1,4 +1,4 @@
-From flask import Flask, session
+from flask import Flask, session
 from db import db
 
 def login(username, pw):
