@@ -41,7 +41,9 @@ Suoritettu kurssi:
     {% for course in studentcourses %}
     <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
     {% endfor %}
-</select> 
+</select>
+<p>
+<input type="submit" value="Kurssi suoritettu">
 </form>
 <p>
 {% endif %}
