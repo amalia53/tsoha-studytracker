@@ -1,3 +1,4 @@
+From flask import Flask, session
 from db import db
 
 def login(username, pw):
@@ -32,3 +33,4 @@ def student_reg(usename, pw, verication):
 			return "no_match"
 	else:
 		return "user_found"
+
