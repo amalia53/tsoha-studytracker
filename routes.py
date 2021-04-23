@@ -141,7 +141,7 @@ def get_course_id(course):
 	
 def get_students_courses(username):
 	student_id = get_student_id(username)
-	sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.student_id=:student_id"
+	sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.student_id=:student_id AND NOT completed"
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	studentcourses = result.fetchall()
 	return studentcourses
