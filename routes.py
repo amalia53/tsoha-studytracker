@@ -55,7 +55,7 @@ def welcome():
 		
 
 @app.route("/student")
-def student():	
+def student_page():	
 	username = session["username"]
 	studentcourses = student.get_students_ongoing_courses(username)
 	goals = student.get_students_ongoing_goals(username)
