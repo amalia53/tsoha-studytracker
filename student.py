@@ -1,5 +1,18 @@
 from db import db
 
+def start_course(course, goal, username):
+	course_id = get_course_id(course)
+	student_id = get_student_id(username)
+	sql = "INSERT INTO goals (student_id, course_id, goal, studied) VALUES (:student_id, :course_id, :goal, :studied)"
+	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0], "goal":goal, "studied":0})
+	db.session.commit()
+
+def complete_course(course, username):
+	course_id = get_course_id(course)
+	student_id = get_student_id(username)
+	sql = "UPDATE goals SET completed = NOT completed WHERE student_id=:student_id AND course_id=:course_id"
+	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0]})
+	db.session.commit()
 	
 def get_student_id(username):
 	sql = "SELECT id FROM students WHERE username=:username"

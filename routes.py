@@ -97,22 +97,12 @@ def plan():
 	
 @app.route("/startcourse", methods=["POST"])
 def start_course():
-	course = request.form["course"]
-	goal = request.form["goal"]
-	course_id = student.get_course_id(course)
-	student_id = student.get_student_id(session["username"])
-	sql = "INSERT INTO goals (student_id, course_id, goal, studied) VALUES (:student_id, :course_id, :goal, :studied)"
-	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0], "goal":goal, "studied":0})
-	db.session.commit()
+	student.start_course(request.form["course"], request.form["goal"], session["username"])
 	return redirect("/plan")
 
 @app.route("/coursedone", methods=["POST"])
 def course_done():
-	course_id = student.get_course_id(request.form["course"])
-	student_id = student.get_student_id(session["username"])
-	sql = "UPDATE goals SET completed = NOT completed WHERE student_id=:student_id AND course_id=:course_id"
-	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0]})
-	db.session.commit()
+	student.complete_course(request.form["course"], session["username"])
 	return redirect("/plan")
 	
 	
