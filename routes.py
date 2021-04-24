@@ -133,7 +133,7 @@ def teacher_page():
 
 @app.route("/courses")
 def courses():
-	courses = courses.get_courses
+	all_courses = courses.get_courses
 	return render_template("courses.html", courses = courses)
 	
 @app.route("/courseadded", methods=["POST"])
