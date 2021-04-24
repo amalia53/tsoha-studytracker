@@ -16,6 +16,6 @@ def add_course(course, teacher):
 	db.session.execute(sql, {"course":course, "teacher_id":teacher_id})
 	db.session.commit()
 	
-def get_courses():
+def get_courses:
 	result = db.session.execute("SELECT course FROM courses")
 	return result.fetchall()
