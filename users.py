@@ -23,7 +23,7 @@ def teacher_reg(username, name, pw, verification, code):
 	else:
 		return "not_authenticated" 
 
-def register(table, username, pw, verification):
+def register(table, username, name, pw, verification):
 	sql = "SELECT username FROM students WHERE username=:username UNION SELECT username FROM teachers WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	user = result.fetchone()
