@@ -1,5 +1,6 @@
 from db import db
 from werkzeug.security import check_password_hash, generate_password_hash
+from os import getenv
 
 def login(username, pw):
 	sql = "SELECT pw FROM students WHERE username=:username"
