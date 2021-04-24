@@ -60,17 +60,20 @@ def welcome_teacher():
 		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
+	elif registration == "not_authenticated":
+		return render_template("reg_failed.html", error = "väärä tunnistautumiskoodi")
 	else:
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
 
 @app.route("/student")
 def student_page():	
 	username = session["username"]
+	name = student.get_student_name(username)
 	studentcourses = student.get_students_ongoing_courses(username)
 	goals = student.get_students_ongoing_goals(username)
 	studied = student.get_students_ongoing_studies(username)
 	done = student.get_done(studentcourses, goals, studied)
-	return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+	return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done, name = name)
 	
 @app.route("/study")
 def study():

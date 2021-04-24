@@ -28,6 +28,11 @@ def delete_from_plan(course, username):
 	db.session.execute(sql, {"student_id":student_id[0], "course_id":course_id[0]})
 	db.session.commit()
 	
+def get_student_name(username):
+	sql = "SELECT name FROM students WHERE username=:username"
+	result = db.session.execute(sql, {"username":username})
+	return result.fetchone()
+
 def get_student_id(username):
 	sql = "SELECT id FROM students WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
@@ -111,3 +116,4 @@ def get_previous_studies(username, course, student_id, course_id):
 	sql = "SELECT studied FROM goals WHERE student_id=:student_id AND course_id=:course_id"
 	result = db.session.execute(sql, {"course_id":course_id[0], "student_id":student_id[0]})
 	return result.fetchone()
+
