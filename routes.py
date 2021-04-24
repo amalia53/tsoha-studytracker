@@ -81,7 +81,7 @@ def stats():
 	goals = student.get_students_goals(username)
 	studied = student.get_students_studies(username)
 	done = student.get_done(studentcourses, goals, studied)
-	completed = student.get_completed(studentcourses)
+	completed = student.get_completed(username)
 	return render_template("stats.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done, completed = completed)
 	
 @app.route("/plan")
@@ -91,7 +91,7 @@ def plan():
 	studentcourses = student.get_students_ongoing_courses(username)
 	goals = student.get_students_ongoing_goals(username)
 	studied = student.get_students_ongoing_studies(username)
-	done = get_done(studentcourses, goals, studied)
+	done = student.get_done(studentcourses, goals, studied)
 	courses.sort()
 	return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
