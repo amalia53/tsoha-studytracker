@@ -19,8 +19,7 @@ def student_reg(username, name, pw, verification):
 	return register("students", username, name, pw, verification)
 		
 def teacher_reg(username, name, pw, verification, code):
-	print(getenv("TEACHER_CODE"))
-	if code == getenv("TEACHER_CODE"):
+	if code == 4278:
 		return register("teachers", username, name, pw, verification)
 	else:
 		return "not_authenticated" 
