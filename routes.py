@@ -48,9 +48,9 @@ def welcome_stu():
 	if  registeration == "ok":
 		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
-		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
+		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet", role = "student")
 	else:
-		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
+		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä",  role = "student")
 
 @app.route("/welcometeacher", methods=["POST"])
 def welcome_teacher():
@@ -59,11 +59,11 @@ def welcome_teacher():
 	if  registeration == "ok":
 		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
-		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
+		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet",  role = "teacher")
 	elif registeration == "not_authenticated":
-		return render_template("reg_failed.html", error = "väärä tunnistautumiskoodi")
+		return render_template("reg_failed.html", error = "väärä tunnistautumiskoodi", role = "teacher")
 	else:
-		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
+		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä", role = "teacher")
 
 @app.route("/student")
 def student_page():	

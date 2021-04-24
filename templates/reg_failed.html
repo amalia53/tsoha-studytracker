@@ -3,4 +3,8 @@
 <p>
 Rekisteröityminen epäonnistui, sillä {{ error }}
 <p>
+{% if role == "student" %}
 <a href="/stureg">Yritä uudestaan</a>
+{% else %}
+<a href="/teachreg">Yritä uudestaan</a>
+{% endif %}
