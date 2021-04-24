@@ -41,8 +41,8 @@ def stu_reg():
 def teach_reg():
         return render_template("teacher_reg.html")
 
-@app.route("/welcome", methods=["POST"])
-def welcome():
+@app.route("/welcomestudent", methods=["POST"])
+def welcome_stu():
 	username = request.form["username"]
 	registeration = users.student_reg(username, request.form["password"], request.form["verification"])
 	if  registeration == "ok":
@@ -51,7 +51,17 @@ def welcome():
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
 	else:
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
-		
+
+@app.route("/welcometeacher", methods=["POST"])
+def welcome_teacher():
+	username = request.form["username"]
+	registeration = users.teacher_reg(username, request.form["password"], request.form["verification"])
+	if  registeration == "ok":
+		return render_template("welcome.html", username = username)
+	elif registeration == "no_match":
+		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
+	else:
+		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
 
 @app.route("/student")
 def student_page():	
