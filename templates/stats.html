@@ -14,9 +14,9 @@
   <td>{{ goals[i][0] }} </td>
   <td>{{ studied[i][0] }}</td>
   <td>{{ done[i] }}</td>
-  <td>{% if {{ completed[i][0] }} %} Suoritettu
-      {% else %} Käynnissä
-      {% endif %}</td>
+  {% if {{ completed[i][0] }} %} 
+  <td>Suoritettu</td>
+  {% endif %}
 <tr>
 {% endfor %}
 </table>
