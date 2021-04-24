@@ -17,12 +17,12 @@ def login(username, pw):
 	else:
 		return check_pw(user, pw)
 
-def check_user(username, table)
+def check_user(username, table):
 	sql = "SELECT pw FROM " + table + " WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	return result.fetchone() 
 		
-def check_pw(user, pw)
+def check_pw(user, pw):
 	hash_pw = user[0]
 		if check_password_hash(hash_pw, pw):
 			return "ok"
