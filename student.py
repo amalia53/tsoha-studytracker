@@ -54,7 +54,7 @@ def get_students_courses(username):
 
 def get_courses_student_has_not_added(username):
 	student_id = get_student_id(username)
-	sql = "SELECT course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE student_id=:student_id)"
+	sql = "SELECT course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE student_id=:student_id AND NOT deleted)"
 	result = db.session.execute(sql, {"student_id":student_id[0]})
 	return result.fetchall()
 
