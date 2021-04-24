@@ -105,6 +105,15 @@ def course_done():
 	student.complete_course(request.form["course"], session["username"])
 	return redirect("/plan")
 	
+@app.route("/changegoal", methods=["POST"])
+def change_goal():
+	student.change_plan(request.form["course"], session["username"])
+	return redirect("/plan")
+	
+@app.route("/deletefromplan", methods=["POST"])
+def delete_from_plan():
+	student.delete_from_plan(request.form["course"], session["username"])
+	return redirect("/plan")
 	
 @app.route("/courses")
 def courses():
