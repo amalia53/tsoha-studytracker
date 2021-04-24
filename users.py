@@ -7,7 +7,7 @@ def login(username, pw):
 	result = db.session.execute(sql, {"username":username})
 	student = result.fetchone() 
 	if student == None:
-		teacher = check_user(username, "teachers"
+		teacher = check_user(username, "teachers")
 		if teacher == None:
 			return "invalid_username"
 		else:
