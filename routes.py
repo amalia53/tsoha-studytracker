@@ -60,7 +60,7 @@ def welcome_teacher():
 		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
-	elif registration == "not_authenticated":
+	elif registeration == "not_authenticated":
 		return render_template("reg_failed.html", error = "väärä tunnistautumiskoodi")
 	else:
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
