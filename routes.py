@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, session
 from os import getenv
 
 
-import users, student, teacher, course
+import users, student, teacher
 
 app.secret_key = getenv("SECRET_KEY")
 
@@ -133,11 +133,11 @@ def teacher_page():
 
 @app.route("/courses")
 def courses_page():
-	courses = course.get_courses
+	courses = teacher.get_courses
 	return render_template("courses.html", courses = courses)
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
-	course.add_course(request.form["course"], request.form["teacher"])
+	teacher.add_course(request.form["course"], request.form["teacher"])
 	return redirect("/courses")
 
