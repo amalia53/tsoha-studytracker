@@ -15,10 +15,10 @@ def login(username, pw):
 			return "invalid_pw"
 
 def student_reg(username, pw, verification):
-	return register(students)
+	return register("students")
 		
-def teacher_reg
-	return register(teachers)
+def teacher_reg(username, pw, verification:
+	return register("teachers")
 
 def register(table):
 	sql = "SELECT username FROM students WHERE username=:username UNION SELECT username FROM teachers WHERE username=:username"

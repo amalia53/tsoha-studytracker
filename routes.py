@@ -43,12 +43,10 @@ def teach_reg():
 
 @app.route("/welcome", methods=["POST"])
 def welcome():
-	username = request.form["username"]
-	pw = request.form["password"]
-	verification = request.form["verification"]
-	if users.student_reg(username, pw, verification) == "ok":
+	registeration = users.student_reg(request.form["username"], request.form["password"], request.form["verification"])
+	if  registeration == "ok":
 		return render_template("welcome.html", username = username)
-	elif users.student_reg(username, pw, verification) == "no_match":
+	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
 	else:
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä")
