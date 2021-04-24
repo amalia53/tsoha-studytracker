@@ -17,7 +17,7 @@ def login(username, pw):
 			else:
 				return isPwOk
 	else:
-		return check_pw(user, pw)
+		return check_pw(student, pw)
 
 def check_user(username, table):
 	sql = "SELECT pw FROM " + table + " WHERE username=:username"
