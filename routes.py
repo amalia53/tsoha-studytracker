@@ -6,6 +6,7 @@ from os import getenv
 
 import users
 import student
+import teacher
 
 app.secret_key = getenv("SECRET_KEY")
 
@@ -22,11 +23,12 @@ def login():
 		return render_template("invalid.html", invalid = "käyttäjätunnus")
 	elif login == "invalid_pw":
 		return render_template("invalid.html", invalid = "salasana")
-
+	elif login == "teacher":
+		session["username"] = username
+		return redirect("/teacher")
 	else:
 		session["username"] = username
 		return redirect("/student")
-
 
 @app.route("/logout")
 def logout():
@@ -68,7 +70,7 @@ def welcome_teacher():
 @app.route("/student")
 def student_page():	
 	username = session["username"]
-	name = student.get_student_name(username)
+	name = student.get_student_name(username)[0]
 	studentcourses = student.get_students_ongoing_courses(username)
 	goals = student.get_students_ongoing_goals(username)
 	studied = student.get_students_ongoing_studies(username)
@@ -127,6 +129,11 @@ def delete_from_plan():
 	student.delete_from_plan(request.form["course"], session["username"])
 	return redirect("/plan")
 	
+@app.route("/teacher")
+def teacher_page():
+	name = teacher.get_teacher_name(session["username"])
+	return render_template("teacher.html", name = name)
+
 @app.route("/courses")
 def courses():
 	result = db.session.execute("SELECT course FROM courses")
