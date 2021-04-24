@@ -132,7 +132,7 @@ def teacher_page():
 	return render_template("teacher.html", name = name)
 
 @app.route("/courses")
-def courses():
+def courses_page():
 	all_courses = courses.get_courses
 	return render_template("courses.html", courses = courses)
 	
