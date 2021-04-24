@@ -133,11 +133,11 @@ def teacher_page():
 
 @app.route("/courses")
 def courses_page():
-	courses = courses.get_courses
+	courses = course.get_courses
 	return render_template("courses.html", courses = courses)
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
-	courses.add_course(request.form["course"], request.form["teacher"])
+	course.add_course(request.form["course"], request.form["teacher"])
 	return redirect("/courses")
 
