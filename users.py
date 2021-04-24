@@ -15,13 +15,20 @@ def login(username, pw):
 			return "invalid_pw"
 
 def student_reg(username, pw, verification):
+	return register(students)
+		
+def teacher_reg
+	return register(teachers)
+
+def register(table):
 	sql = "SELECT username FROM students WHERE username=:username UNION SELECT username FROM teachers WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	user = result.fetchone()
 	if user == None:
 		if pw == verification:
 			hash_pw = generate_password_hash(pw)
-			sql = "INSERT INTO students (username, pw) VALUES (:username, :pw)"
+			sql = "INSERT INTO " + table +  " (username, pw) VALUES (:username, :pw)"
+			print(sql)
 			db.session.execute(sql, {"username":username, "pw":hash_pw})
 			db.session.commit()
 			return "ok"
