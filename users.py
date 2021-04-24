@@ -14,11 +14,14 @@ def login(username, pw):
 		else:
 			return "invalid_pw"
 
-def student_reg(username, pw, verification):
-	return register("students", username, pw, verification)
+def student_reg(username, name, pw, verification):
+	return register("students", username, name, pw, verification)
 		
-def teacher_reg(username, pw, verification):
-	return register("teachers", username, pw, verification)
+def teacher_reg(username, name, pw, verification, code):
+	if code == getenv("TEACHER_CODE"):
+		return register("teachers", username, name, pw, verification)
+	else:
+		return "not_authenticated" 
 
 def register(table, username, pw, verification):
 	sql = "SELECT username FROM students WHERE username=:username UNION SELECT username FROM teachers WHERE username=:username"
@@ -27,9 +30,8 @@ def register(table, username, pw, verification):
 	if user == None:
 		if pw == verification:
 			hash_pw = generate_password_hash(pw)
-			sql = "INSERT INTO " + table +  " (username, pw) VALUES (:username, :pw)"
-			print(sql)
-			db.session.execute(sql, {"username":username, "pw":hash_pw})
+			sql = "INSERT INTO " + table +  " (username, name, pw) VALUES (:username, :name, :pw)"
+			db.session.execute(sql, {"username":username, "name":name, "pw":hash_pw})
 			db.session.commit()
 			return "ok"
 		else:

@@ -1,4 +1,4 @@
-CREATE TABLE students (id SERIAL PRIMARY KEY,  username TEXT UNIQUE,  pw TEXT);
+CREATE TABLE students (id SERIAL PRIMARY KEY, username TEXT UNIQUE, name TEXT, pw TEXT);
 CREATE TABLE goals (id SERIAL PRIMARY KEY, student_id INTEGER, course_id INTEGER, goal INTEGER, studied INTEGER, completed BOOLEAN DEFAULT FALSE, deleted BOOLEAN DEFAULT FALSE);
 CREATE TABLE courses (id SERIAL PRIMARY KEY, course TEXT, teacher_id INTEGER);
-CREATE TABLE teachers (id SERIAL PRIMARY KEY, username TEXT UNIQUE, pw TEXT);
+CREATE TABLE teachers (id SERIAL PRIMARY KEY, username TEXT UNIQUE, name TEXT, pw TEXT);

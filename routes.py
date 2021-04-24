@@ -43,10 +43,10 @@ def teach_reg():
 
 @app.route("/welcomestudent", methods=["POST"])
 def welcome_stu():
-	username = request.form["username"]
-	registeration = users.student_reg(username, request.form["password"], request.form["verification"])
+	name = request.form["name"]
+	registeration = users.student_reg(request.form["username"], name, request.form["password"], request.form["verification"])
 	if  registeration == "ok":
-		return render_template("welcome.html", username = username)
+		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
 	else:
@@ -54,10 +54,10 @@ def welcome_stu():
 
 @app.route("/welcometeacher", methods=["POST"])
 def welcome_teacher():
-	username = request.form["username"]
-	registeration = users.teacher_reg(username, request.form["password"], request.form["verification"])
+	name = request.form["name"]
+	registeration = users.teacher_reg(request.form["username"], name, request.form["password"], request.form["verification"], request.form["code"])
 	if  registeration == "ok":
-		return render_template("welcome.html", username = username)
+		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet")
 	else:
