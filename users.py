@@ -15,7 +15,7 @@ def login(username, pw):
 			return "invalid_pw"
 
 def student_reg(username, pw, verification):
-	sql = "SELECT username FROM students WHERE username=:username"
+	sql = "SELECT student.username, teacher.username FROM students, teachers WHERE teacher.username=:username OR student.username=:username"
 	result = db.session.execute(sql, {"username":username})
 	user = result.fetchone()
 	if user == None:
@@ -29,4 +29,3 @@ def student_reg(username, pw, verification):
 			return "no_match"
 	else:
 		return "user_found"
-
