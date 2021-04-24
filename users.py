@@ -24,10 +24,10 @@ def check_user(username, table):
 		
 def check_pw(user, pw):
 	hash_pw = user[0]
-		if check_password_hash(hash_pw, pw):
-			return "ok"
-		else:
-			return "invalid_pw"
+	if check_password_hash(hash_pw, pw):
+		return "ok"
+	else:
+		return "invalid_pw"
 
 def student_reg(username, name, pw, verification):
 	return register("students", username, name, pw, verification)
