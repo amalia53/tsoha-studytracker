@@ -15,12 +15,12 @@ def login(username, pw):
 			return "invalid_pw"
 
 def student_reg(username, pw, verification):
-	return register("students")
+	return register("students", username, pw, verification)
 		
 def teacher_reg(username, pw, verification):
-	return register("teachers")
+	return register("teachers", username, pw, verification)
 
-def register(table):
+def register(table, username, pw, verification):
 	sql = "SELECT username FROM students WHERE username=:username UNION SELECT username FROM teachers WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	user = result.fetchone()
