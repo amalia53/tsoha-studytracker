@@ -107,7 +107,7 @@ def course_done():
 	
 @app.route("/changegoal", methods=["POST"])
 def change_goal():
-	student.change_plan(request.form["course"], session["username"])
+	student.change_plan(request.form["course"], request.form["goal"], session["username"])
 	return redirect("/plan")
 	
 @app.route("/deletefromplan", methods=["POST"])
