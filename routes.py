@@ -1,12 +1,9 @@
 from app import app
-from db import db
 from flask import Flask, render_template, redirect, request, session
 from os import getenv
 
 
-import users
-import student
-import teacher
+import users, student, teacher, courses
 
 app.secret_key = getenv("SECRET_KEY")
 
@@ -136,17 +133,11 @@ def teacher_page():
 
 @app.route("/courses")
 def courses():
-	result = db.session.execute("SELECT course FROM courses")
-	courses = result.fetchall()
-	courses.sort()
+	courses = courses.get_courses
 	return render_template("courses.html", courses = courses)
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
-	course = request.form["course"]
-	teacher = request.form["teacher"]
-	sql = "INSERT INTO courses (course, teacher) VALUES (:course, :teacher)"
-	db.session.execute(sql, {"course":course, "teacher":teacher})
-	db.session.commit()
+	courses.add_course(request.form["course"], request.form["teacher"])
 	return redirect("/courses")
 
