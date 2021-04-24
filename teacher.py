@@ -18,6 +18,4 @@ def add_course(course, teacher):
 	
 def get_courses():
 	result = db.session.execute("SELECT course FROM courses")
-	courses = result.fetchall()
-	courses.sort()
-	return courses
+	return result.fetchall()
