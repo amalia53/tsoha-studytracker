@@ -11,9 +11,11 @@ def login(username, pw):
 		if teacher == None:
 			return "invalid_username"
 		else:
-			if check_pw(teacher, pw) == "ok":
+			isPwOk = check_pw(user, pw)
+			if isPwOk == "ok":
 				return "teacher"
-			return isPwOk
+			else:
+				return isPwOk
 	else:
 		return check_pw(user, pw)
 

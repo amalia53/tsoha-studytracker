@@ -131,7 +131,7 @@ def delete_from_plan():
 	
 @app.route("/teacher")
 def teacher_page():
-	name = teacher.get_teacher_name(session["username"])
+	name = teacher.get_teacher_name(session["username"])[0]
 	return render_template("teacher.html", name = name)
 
 @app.route("/courses")
