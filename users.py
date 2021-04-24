@@ -17,7 +17,7 @@ def login(username, pw):
 def student_reg(username, pw, verification):
 	return register("students")
 		
-def teacher_reg(username, pw, verification:
+def teacher_reg(username, pw, verification):
 	return register("teachers")
 
 def register(table):
