@@ -65,19 +65,25 @@ def welcome_teacher():
 		return render_template("reg_failed.html", error = "käyttäjänimi on jo käytössä", role = "teacher")
 
 @app.route("/student")
-def student_page():	
-	username = session["username"]
-	studentcourses = student.get_students_ongoing_courses(username)
-	goals = student.get_students_ongoing_goals(username)
-	studied = student.get_students_ongoing_studies(username)
-	done = student.get_done(studentcourses, goals, studied)
-	return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+def student_page():
+	if session["username"]:
+		username = session["username"]
+		studentcourses = student.get_students_ongoing_courses(username)
+		goals = student.get_students_ongoing_goals(username)
+		studied = student.get_students_ongoing_studies(username)
+		done = student.get_done(studentcourses, goals, studied)
+		return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+	else:
+		return render_template("notallowed.html")
 	
 @app.route("/study")
 def study():
-	courses = student.get_students_ongoing_courses(session["username"])
-	courses.sort()
-	return render_template("study.html", courses = courses)
+	if session["username"]:
+		courses = student.get_students_ongoing_courses(session["username"])
+		courses.sort()
+		return render_template("study.html", courses = courses)
+	else:
+		return render_template("notallowed.html")
 	
 @app.route("/studied", methods=["POST"])
 def studied():
@@ -86,24 +92,30 @@ def studied():
 	
 @app.route("/stats")
 def stats():
-	username = session["username"]
-	studentcourses = student.get_students_courses(username)
-	goals = student.get_students_goals(username)
-	studied = student.get_students_studies(username)
-	done = student.get_done(studentcourses, goals, studied)
-	completed = student.get_completed(username)
-	return render_template("stats.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done, completed = completed)
+	if session["username"]:
+		username = session["username"]
+		studentcourses = student.get_students_courses(username)
+		goals = student.get_students_goals(username)
+		studied = student.get_students_studies(username)
+		done = student.get_done(studentcourses, goals, studied)
+		completed = student.get_completed(username)
+		return render_template("stats.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done, completed = completed)
+	else:
+		return render_template("notallowed.html")
 	
 @app.route("/plan")
-def plan():	
-	username = session["username"]
-	courses = student.get_courses_student_has_not_added(username)
-	studentcourses = student.get_students_ongoing_courses(username)
-	goals = student.get_students_ongoing_goals(username)
-	studied = student.get_students_ongoing_studies(username)
-	done = student.get_done(studentcourses, goals, studied)
-	courses.sort()
-	return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+def plan():
+	if session["username"]:
+		username = session["username"]
+		courses = student.get_courses_student_has_not_added(username)
+		studentcourses = student.get_students_ongoing_courses(username)
+		goals = student.get_students_ongoing_goals(username)
+		studied = student.get_students_ongoing_studies(username)
+		done = student.get_done(studentcourses, goals, studied)
+		courses.sort()
+		return render_template("plan.html", courses = courses, studentcourses = studentcourses, goals = goals, studied = studied, done = done)
+	else:
+		return render_template("notallowed.html")
 	
 @app.route("/startcourse", methods=["POST"])
 def start_course():
@@ -127,7 +139,10 @@ def delete_from_plan():
 	
 @app.route("/teacher")
 def teacher_page():
-	return render_template("teacher.html")
+	if users.is_teacher(session["username"]):
+		return render_template("teacher.html")
+	else:
+		return render_template("notallowed.html")
 
 @app.route("/grade")
 def grade():
@@ -135,10 +150,13 @@ def grade():
 	
 @app.route("/courses")
 def courses_page():
-	courses = teacher.get_courses()
-	courses.sort()
-	role = users.get_user_role(session["username"])
-	return render_template("courses.html", courses = courses, role = role)
+	if session["username"]:
+		courses = teacher.get_courses()
+		courses.sort()
+		role = users.get_user_role(session["username"])
+		return render_template("courses.html", courses = courses, role = role)
+	else:
+		return render_template("notallowed.html")
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
