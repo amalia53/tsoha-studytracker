@@ -9,7 +9,7 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	if session["username"] == :
+	if session["username"] == "":
 		role = users.get_user_role(session["username"])[0]
 	else:
 		role = ""
