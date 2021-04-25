@@ -29,8 +29,8 @@ def login():
 
 @app.route("/logout")
 def logout():
-    del session["username"]
-    return redirect("/")
+	del session["username"]
+	return redirect("/")
 
 @app.route("/stureg")
 def stu_reg():
@@ -131,14 +131,22 @@ def teacher_page():
 	name = teacher.get_teacher_name(session["username"])[0]
 	return render_template("teacher.html", name = name)
 
+@app.route("/grade")
+def grade():
+	
+	
 @app.route("/courses")
 def courses_page():
 	courses = teacher.get_courses()
 	courses.sort()
-	return render_template("courses.html", courses = courses)
+	role = users.get_user_role(session["username"])
+	return render_template("courses.html", courses = courses, role = role)
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
-	teacher.add_course(request.form["course"], request.form["teacher"])
+	if is_teacher(session["username"])
+		teacher.add_course(request.form["course"], session["username"])
+	else:
+		student.add_course(request.form["course"])
 	return redirect("/courses")
 
