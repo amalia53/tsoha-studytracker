@@ -11,10 +11,10 @@ def get_teacher_id(username):
 	user_id = users.get_user_id(username)
 	sql = "SELECT id FROM teachers WHERE user_id=:user_id"
 	result = db.session.execute(sql, {"user_id":user_id})
-	return result.fetchone()
+	return result.fetchone()[0]
 	
 def add_course(course, username):
-	teacher_id = get_teacher_id(username)[0]
+	teacher_id = get_teacher_id(username)
 	sql = "INSERT INTO courses (course, teacher_id) VALUES (:course, :teacher_id)"
 	db.session.execute(sql, {"course":course, "teacher_id":teacher_id})
 	db.session.commit()
