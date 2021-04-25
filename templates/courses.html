@@ -9,7 +9,6 @@
 <p>
 <form action="/courseadded" method="POST">
 <title>Kurssin lisäys</title>
-{% if role == "student" %}
 <h1>Lisää kurssi</h1>
 <p>
 Kurssin nimi: <input type=text name="course" size="30" required> 
@@ -17,14 +16,8 @@ Kurssin nimi: <input type=text name="course" size="30" required>
 <input type="submit" value="Lisää">
 </form>
 <p>
+{% if role == "student" %}
 <a href="/student">Oma sivu</a>
 {% else %}
-<h1>Lisää kurssi</h1>
-<p>
-Kurssin nimi: <input type=text name="course" size="30" required> 
-<p>
-<input type="submit" value="Lisää">
-</form>
-<p>
 <a href="/teacher">Oma sivu</a>
-{% endif %}
+{% endif %}

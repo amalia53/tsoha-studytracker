@@ -9,7 +9,11 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	return render_template("index.html")
+	if session["username"]:
+		role = users.get_user_role(session["username"])[0]
+	else:
+		role = ""
+	return render_template("index.html", role = role)
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -153,7 +157,7 @@ def courses_page():
 	if session["username"]:
 		courses = teacher.get_courses()
 		courses.sort()
-		role = users.get_user_role(session["username"])
+		role = users.get_user_role(session["username"])[0]
 		return render_template("courses.html", courses = courses, role = role)
 	else:
 		return render_template("notallowed.html")

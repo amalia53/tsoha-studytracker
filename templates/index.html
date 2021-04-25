@@ -13,7 +13,11 @@ Sovellukseen voi tulevaisuudessa kirjautua myös opettajana.
 {% if session.username %}
 <b>Olet kirjautunut käyttäjänä {{ session.username }} </b>
 <p>
+{% if role == "student" %}
 <a href="/student">Oma sivu</a>
+{% else %}
+<a href="/teacher">Oma sivu</a>
+{% endif %}
 <p>
 <a href="/logout">Kirjaudu ulos</a>
 <p>
