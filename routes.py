@@ -6,7 +6,6 @@ from os import getenv
 import users, student, teacher
 
 app.secret_key = getenv("SECRET_KEY")
-session["logged_in"] = False
 
 @app.route("/")
 def index():
