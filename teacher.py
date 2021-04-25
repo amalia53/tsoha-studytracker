@@ -2,7 +2,7 @@ from db import db
 
 import users
 
-def add_teacher(name, user_id)
+def add_teacher(name, user_id):
 	sql = "INSERT INTO teachers (name, user_id) VALUES (:name, :user_id)"
 	result = db.session.execute(sql, {"name":name, "user_id":user_id})
 

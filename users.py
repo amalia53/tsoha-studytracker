@@ -50,10 +50,10 @@ def get_user_id(username):
 	result = db.session.execute(sql, {"username":username})
 	return result.fetchone()
     
-def get_user_role(username)
+def get_user_role(username):
 	sql = "SELECT role FROM users WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	return result.fetchone()
 	
-def is_teacher(username)
+def is_teacher(username):
 	return get_user_role == "teacher"
