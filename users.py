@@ -33,6 +33,9 @@ def teacher_reg(username, name, pw, verification, code):
         if reg == "ok":
         	user_id = get_user_id(username)[0]
         	teacher.add_teacher(name, user_id)
+        	return "ok"
+        else:
+        	return reg
     else:
         return "not_authenticated" 
 
