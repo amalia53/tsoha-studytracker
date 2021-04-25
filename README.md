@@ -86,6 +86,6 @@ Arvosteltujen kurssien keskiarvoiset opiskelutuntimäärät ja arvosanat.
 
 Lista kaikista sovelluksessa olevista kursseista ja niihin käytettyjen opiskelutuntien keskiarvosta (kun kurssi on kokonaan suoritettu). 
 
-**Näkyy lista kursseista ja on mahdollista lisätä uusi kurssi**
+**Näkyy lista kursseista ja opettaja voi lisätä omia kursseja**
 
 
