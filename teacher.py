@@ -14,7 +14,7 @@ def get_teacher_id(username):
 	return result.fetchone()
 	
 def add_course(course, username):
-	teacher_id = get_teacher_id(username)
+	teacher_id = get_teacher_id(username)[0]
 	sql = "INSERT INTO courses (course, teacher_id) VALUES (:course, :teacher_id)"
 	db.session.execute(sql, {"course":course, "teacher_id":teacher_id})
 	db.session.commit()
