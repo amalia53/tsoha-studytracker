@@ -42,8 +42,7 @@ def teach_reg():
 
 @app.route("/welcomestudent", methods=["POST"])
 def welcome_stu():
-	name = request.form["name"]
-	registeration = users.student_reg(request.form["username"], name, request.form["password"], request.form["verification"])
+	registeration = users.student_reg(request.form["username"], request.form["password"], request.form["verification"])
 	if  registeration == "ok":
 		return render_template("welcome.html", name = name)
 	elif registeration == "no_match":
