@@ -4,10 +4,12 @@ from werkzeug.security import check_password_hash, generate_password_hash
 def login(username, pw):
     sql = "SELECT pw FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
-    user_pw = result.fetchone()
+    user = result.fetchone()
+    user_pw = user[0]
     sql = "SELECT role FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
-    role = result.fetchone() 
+    user = result.fetchone() 
+    role = user[0]
     if user_pw == None:
         return "invalid_username"
     else: 		
