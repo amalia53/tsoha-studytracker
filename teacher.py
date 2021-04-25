@@ -5,6 +5,7 @@ import users
 def add_teacher(name, user_id):
 	sql = "INSERT INTO teachers (name, user_id) VALUES (:name, :user_id)"
 	result = db.session.execute(sql, {"name":name, "user_id":user_id})
+	db.session.commit()
 
 def get_teacher_id(username):
 	user_id = users.get_user_id(username)
