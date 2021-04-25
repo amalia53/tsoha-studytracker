@@ -133,7 +133,7 @@ def teacher_page():
 
 @app.route("/grade")
 def grade():
-	
+	return render_template("grade.html")
 	
 @app.route("/courses")
 def courses_page():
