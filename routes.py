@@ -9,10 +9,7 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	if session["logged_in"]:
-		role = users.get_user_role(session["username"])[0]
-	else:
-		role = ""
+	role = users.get_user_role(session["username"])[0]
 	return render_template("index.html", role = role)
 
 @app.route("/login", methods=["POST"])
@@ -26,7 +23,6 @@ def login():
 		return render_template("invalid.html", invalid = "salasana")
 	elif login == "teacher":
 		session["username"] = username
-		session["logged_in"] = True
 		return redirect("/teacher")
 	else:
 		session["username"] = username
