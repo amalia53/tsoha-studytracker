@@ -6,10 +6,11 @@ from os import getenv
 import users, student, teacher
 
 app.secret_key = getenv("SECRET_KEY")
+session["logged_in"] = False
 
 @app.route("/")
 def index():
-	if session["username"]:
+	if session["logged_in"]:
 		role = users.get_user_role(session["username"])[0]
 	else:
 		role = ""
@@ -26,6 +27,7 @@ def login():
 		return render_template("invalid.html", invalid = "salasana")
 	elif login == "teacher":
 		session["username"] = username
+		session["logged_in"] = True
 		return redirect("/teacher")
 	else:
 		session["username"] = username
@@ -34,6 +36,7 @@ def login():
 @app.route("/logout")
 def logout():
 	del session["username"]
+	session["logged_in"] = False
 	return redirect("/")
 
 @app.route("/stureg")
