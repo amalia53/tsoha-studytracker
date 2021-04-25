@@ -142,7 +142,7 @@ def delete_from_plan():
 	
 @app.route("/teacher")
 def teacher_page():
-	if users.is_teacher(session["username"]):
+	if session["role"] == "teacher":
 		return render_template("teacher.html")
 	else:
 		return render_template("notallowed.html")
@@ -156,8 +156,7 @@ def courses_page():
 	if session["username"]:
 		courses = teacher.get_courses()
 		courses.sort()
-		role = users.get_user_role(session["username"])[0]
-		return render_template("courses.html", courses = courses, role = role)
+		return render_template("courses.html", courses = courses)
 	else:
 		return render_template("notallowed.html")
 	
