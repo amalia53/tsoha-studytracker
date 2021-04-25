@@ -142,7 +142,7 @@ def courses_page():
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
-	if teacher.is_teacher(session["username"]):
+	if users.is_teacher(session["username"]):
 		teacher.add_course(request.form["course"], session["username"])
 	else:
 		student.add_course(request.form["course"])
