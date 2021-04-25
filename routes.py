@@ -42,7 +42,8 @@ def teach_reg():
 
 @app.route("/welcomestudent", methods=["POST"])
 def welcome_stu():
-	registeration = users.student_reg(request.form["username"], request.form["password"], request.form["verification"])
+	username = request.form["username"]
+	registeration = users.student_reg(username, request.form["password"], request.form["verification"])
 	if  registeration == "ok":
 		return render_template("welcome.html", username = username)
 	elif registeration == "no_match":
@@ -52,10 +53,10 @@ def welcome_stu():
 
 @app.route("/welcometeacher", methods=["POST"])
 def welcome_teacher():
-	name = request.form["name"]
-	registeration = users.teacher_reg(request.form["username"], name, request.form["password"], request.form["verification"], request.form["code"])
+	username = request.form["username"]
+	registeration = users.teacher_reg(username, request.form["name"], request.form["password"], request.form["verification"], request.form["code"])
 	if  registeration == "ok":
-		return render_template("welcome.html", username = name)
+		return render_template("welcome.html", username = username)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet",  role = "teacher")
 	elif registeration == "not_authenticated":

@@ -9,7 +9,7 @@
 <p>
 <form action="/courseadded" method="POST">
 <title>Kurssin lisäys</title>
-[% if role == "student" %}
+{% if role == "student" %}
 <h1>Lisää kurssi</h1>
 <p>
 Kurssin nimi: <input type=text name="course" size="30" required> 
