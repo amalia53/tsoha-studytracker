@@ -30,11 +30,6 @@ def delete_from_plan(course, username):
     db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id[0]})
     db.session.commit()
     
-def get_student_name(username):
-    sql = "SELECT name FROM users WHERE username=:username"
-    result = db.session.execute(sql, {"username":username})
-    return result.fetchone()
-    
 def get_course_id(course):
     sql = "SELECT id FROM courses WHERE course=:course"
     result = db.session.execute(sql, {"course":course})

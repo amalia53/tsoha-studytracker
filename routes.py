@@ -44,7 +44,7 @@ def teach_reg():
 def welcome_stu():
 	registeration = users.student_reg(request.form["username"], request.form["password"], request.form["verification"])
 	if  registeration == "ok":
-		return render_template("welcome.html", name = name)
+		return render_template("welcome.html", username = username)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet", role = "student")
 	else:
@@ -55,7 +55,7 @@ def welcome_teacher():
 	name = request.form["name"]
 	registeration = users.teacher_reg(request.form["username"], name, request.form["password"], request.form["verification"], request.form["code"])
 	if  registeration == "ok":
-		return render_template("welcome.html", name = name)
+		return render_template("welcome.html", username = name)
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error = "salasanat eivät täsmänneet",  role = "teacher")
 	elif registeration == "not_authenticated":
@@ -66,12 +66,11 @@ def welcome_teacher():
 @app.route("/student")
 def student_page():	
 	username = session["username"]
-	name = student.get_student_name(username)[0]
 	studentcourses = student.get_students_ongoing_courses(username)
 	goals = student.get_students_ongoing_goals(username)
 	studied = student.get_students_ongoing_studies(username)
 	done = student.get_done(studentcourses, goals, studied)
-	return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done, name = name)
+	return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done)
 	
 @app.route("/study")
 def study():
@@ -127,8 +126,7 @@ def delete_from_plan():
 	
 @app.route("/teacher")
 def teacher_page():
-	name = teacher.get_teacher_name(session["username"])[0]
-	return render_template("teacher.html", name = name)
+	return render_template("teacher.html")
 
 @app.route("/grade")
 def grade():
