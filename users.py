@@ -31,7 +31,7 @@ def teacher_reg(username, name, pw, verification, code):
     if code == "4278":
         reg = register(username, pw, verification, "teacher")
         if reg == "ok":
-        	user_id = get_user_id(username)
+        	user_id = get_user_id(username)[0]
         	teacher.add_teacher(name, user_id)
     else:
         return "not_authenticated" 
