@@ -58,12 +58,9 @@ def register(username, pw, verification, role):
 def get_user_id(username):
 	sql = "SELECT id FROM users WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
-	return result.fetchone()[0]
+	return result.fetchone()
     
 def get_user_role(username):
 	sql = "SELECT role FROM users WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
 	return result.fetchone()
-	
-def is_teacher(username):
-	return get_user_role == "teacher"
