@@ -15,6 +15,7 @@ def login(username, pw):
     else:
         user_pw = results[0][0]
         user_role = results[0][1]
+        print("Salasana ja rooli:")
         print(user_pw)
         print(user_role)
         return check_pw(user_pw, pw, user_role)
