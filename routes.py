@@ -153,12 +153,10 @@ def grade():
 	courses.sort()
 	return render_template("grade.html", courses = courses)
 	
-@app.route("/startgrading", methods=["POST"])
-def start_grading():
-	course = request.form["course"]
-	session["course"] = course
-	students = teacher.get_students_from_course(course)
-	return render_template("grade_course.html", students = students)
+@app.route("/selectcourse", methods=["POST"])
+def select_course():
+	session["course"] = request.form["course"]
+	return redirect("/gradecourse")
 	
 @app.route("/gradecourse")
 def grade_course():
