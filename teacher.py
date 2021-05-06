@@ -25,10 +25,10 @@ def get_students_from_course(course):
 	result = db.session.execute(sql, {"course_id":course_id})
 	return result.fetchall()
 
-def add_grade(student, course, grade):
-	course_id = student.get_course_id(course)[0]
+def add_grade(student_id, course, grade):
+	course_id = student.get_course_id(course)
 	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id"
-	db.session.execute(sql, {"grade":grade, "course_id":course_id, "user_id":student})
+	db.session.execute(sql, {"grade":grade, "course_id":course_id, "user_id":student_id})
 	db.session.commit()
 	
 def add_course(course, username):
