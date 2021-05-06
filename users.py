@@ -7,7 +7,6 @@ def login(username, pw):
     sql = "SELECT pw, role FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     results = result.fetchall()
-    print(results)
 #    sql = "SELECT role FROM users WHERE username=:username"
 #    result = db.session.execute(sql, {"username":username})
 #    role = result.fetchone() 
@@ -16,9 +15,6 @@ def login(username, pw):
     else:
         user_pw = results[0][0]
         user_role = results[0][1]
-        print("Salasana ja rooli:")
-        print(user_pw)
-        print(user_role)
         return check_pw(user_pw, pw, user_role)
         
 def check_pw(user_pw, pw, role):
