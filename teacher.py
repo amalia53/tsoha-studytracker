@@ -18,7 +18,18 @@ def get_teachers_ongoing_courses(username):
 	sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
 	result = db.session.execute(sql, {"teacher_id":teacher_id})
 	return result.fetchall()
-	
+
+def get_students_from_course(course):
+	student.get_course_id(course)
+	sql = "SELECT user_id FROM goals WHERE course_id=:course_id"
+	result = db.session.execute(sql, {"course_id":course_id})
+	return result.fetchall()
+
+def add_grade(student, course, grade):
+	course_id = student.get_course_id(course)
+	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id"
+	db.session.execute(sql, {"grade":grade, "course_id":course_id, "user_id":student})
+	db.session.commit()
 	
 def add_course(course, username):
 	teacher_id = get_teacher_id(username)[0]
