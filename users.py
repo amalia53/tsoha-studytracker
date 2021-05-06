@@ -6,14 +6,14 @@ import teacher
 def login(username, pw):
     sql = "SELECT pw, role FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
-    user = result.fetchall()
+    results = result.fetchone()
 #    sql = "SELECT role FROM users WHERE username=:username"
 #    result = db.session.execute(sql, {"username":username})
 #    role = result.fetchone() 
-    if user == None:
+    if results == None:
         return "invalid_username"
     else:
-        return check_pw(user[0], pw, user[1])
+        return check_pw(results[0][0], pw, results[0][1])
         
 def check_pw(user_pw, pw, role):
     hash_pw = user_pw
