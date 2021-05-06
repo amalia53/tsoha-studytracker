@@ -21,7 +21,7 @@ def get_teachers_ongoing_courses(username):
 
 def get_students_from_course(course):
 	course_id = student.get_course_id(course)
-	sql = "SELECT user_id FROM goals WHERE course_id=:course_id"
+	sql = "SELECT user_id FROM goals WHERE course_id=:course_id AND NOT deleted"
 	result = db.session.execute(sql, {"course_id":course_id})
 	return result.fetchall()
 
