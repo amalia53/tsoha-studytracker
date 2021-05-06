@@ -10,6 +10,7 @@ def login(username, pw):
 #    sql = "SELECT role FROM users WHERE username=:username"
 #    result = db.session.execute(sql, {"username":username})
 #    role = result.fetchone() 
+    print(results)
     if results == None:
         return "invalid_username"
     else:
