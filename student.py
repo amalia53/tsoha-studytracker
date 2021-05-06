@@ -6,34 +6,34 @@ def start_course(course, goal, username):
     course_id = get_course_id(course)
     user_id = users.get_user_id(username)
     sql = "INSERT INTO goals (user_id, course_id, goal, studied) VALUES (:user_id, :course_id, :goal, :studied)"
-    db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id[0], "goal":goal, "studied":0})
+    db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id, "goal":goal, "studied":0})
     db.session.commit()
 
 def complete_course(course, username):
     course_id = get_course_id(course)
     user_id = users.get_user_id(username)
     sql = "UPDATE goals SET completed = NOT completed WHERE user_id=:user_id AND course_id=:course_id"
-    db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id[0]})
+    db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id})
     db.session.commit()
     
 def change_plan(course, goal, username):
     course_id = get_course_id(course)
     user_id = users.get_user_id(username)
     sql = "UPDATE goals SET goal=:goal WHERE user_id=:user_id AND course_id=:course_id"
-    db.session.execute(sql, {"goal":goal, "user_id":user_id[0], "course_id":course_id[0]})
+    db.session.execute(sql, {"goal":goal, "user_id":user_id[0], "course_id":course_id})
     db.session.commit()
     
 def delete_from_plan(course, username):
     course_id = get_course_id(course)
     user_id = users.get_user_id(username)
     sql = "UPDATE goals SET deleted = NOT deleted WHERE user_id=:user_id AND course_id=:course_id"
-    db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id[0]})
+    db.session.execute(sql, {"user_id":user_id[0], "course_id":course_id})
     db.session.commit()
     
 def get_course_id(course):
     sql = "SELECT id FROM courses WHERE course=:course"
     result = db.session.execute(sql, {"course":course})
-    return result.fetchone() 
+    return result.fetchone()[0]
     
 def get_students_ongoing_courses(username):
     user_id = users.get_user_id(username)
@@ -101,7 +101,7 @@ def update_studies(username, course, studied):
     studied_pre = get_previous_studies(username, course, user_id, course_id)[0]    
     studied += studied_pre
     sql = "UPDATE goals SET studied=:studied WHERE user_id=:user_id AND course_id=:course_id"
-    result = db.session.execute(sql, {"studied":studied, "course_id":course_id[0], "user_id":user_id[0]})
+    result = db.session.execute(sql, {"studied":studied, "course_id":course_id, "user_id":user_id[0]})
     db.session.commit()
 
 def get_previous_studies(username, course, user_id, course_id):
