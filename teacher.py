@@ -1,6 +1,6 @@
 from db import db
 
-import users
+import users, student
 
 def add_teacher(name, user_id):
 	sql = "INSERT INTO teachers (name, user_id) VALUES (:name, :user_id)"
@@ -20,7 +20,7 @@ def get_teachers_ongoing_courses(username):
 	return result.fetchall()
 
 def get_students_from_course(course):
-	student.get_course_id(course)
+	course_id = student.get_course_id(course)
 	sql = "SELECT user_id FROM goals WHERE course_id=:course_id"
 	result = db.session.execute(sql, {"course_id":course_id})
 	return result.fetchall()
