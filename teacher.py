@@ -14,7 +14,7 @@ def get_teacher_id(username):
 	return result.fetchone()
 	
 def get_teachers_ongoing_courses(username):
-	teacher_id = get_teacher_id(usename)[0]
+	teacher_id = get_teacher_id(username)[0]
 	sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
 	result = db.session.execute(sql, {"teacher_id":teacher_id})
 	return result.fetchall()
