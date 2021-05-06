@@ -10,8 +10,7 @@ def login(username, pw):
 #    sql = "SELECT role FROM users WHERE username=:username"
 #    result = db.session.execute(sql, {"username":username})
 #    role = result.fetchone() 
-    print(results)
-    if results == None:
+    if not results:
         return "invalid_username"
     else:
         user_pw = results[0][0]
@@ -44,7 +43,7 @@ def register(username, pw, verification, role):
     sql = "SELECT username FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    if len(user) == 0:
+    if user == None:
         if pw == verification:
             hash_pw = generate_password_hash(pw)
             sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
