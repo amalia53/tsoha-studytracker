@@ -149,11 +149,19 @@ def teacher_page():
 
 @app.route("/grade")
 def grade():
-	return render_template("grade.html")
+	courses = teacher.get_teachers_ongoing_courses(session["username"])
+	courses.sort()
+	return render_template("grade.html", courses = courses)
 	
-@app.route("/gradecourse")
+@app.route("/gradecourse", methods=["POST"])
 def grade_course():
+	session["course"] = request.form["course"]
 	return render_template("grade_course.html")
+	
+@app.route("/graded", methods=["POST"])
+def graded():
+	del session["course"]
+	return redirect("/grade")
 	
 @app.route("/courses")
 def courses_page():

@@ -6,7 +6,8 @@ import teacher
 def login(username, pw):
     sql = "SELECT pw, role FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
-    results = result.fetchone()
+    results = result.fetchall()
+    print(results)
 #    sql = "SELECT role FROM users WHERE username=:username"
 #    result = db.session.execute(sql, {"username":username})
 #    role = result.fetchone() 

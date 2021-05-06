@@ -3,7 +3,12 @@
 <p>
 <form action="/gradecourse" method="POST">
 Arvosteltava kurssi:
-<input type="number" name="studied" size="3" required> tuntia
+<p>
+<select name="course" method="GET" action="/" required>
+    {% for course in courses %}
+    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% endfor %}
+</select> 
 <p>
 <input type="submit" value="Aloita arvostelu">
 <form>

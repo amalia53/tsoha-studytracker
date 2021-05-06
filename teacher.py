@@ -13,6 +13,13 @@ def get_teacher_id(username):
 	result = db.session.execute(sql, {"user_id":user_id})
 	return result.fetchone()
 	
+def get_teachers_ongoing_courses(username):
+	teacher_id = get.teacher_id(usename)[0]
+	sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
+	result = db.session.execute(sql, {"teacher_id":teacher_id})
+	return result.fetchall()
+	
+	
 def add_course(course, username):
 	teacher_id = get_teacher_id(username)[0]
 	sql = "INSERT INTO courses (course, teacher_id) VALUES (:course, :teacher_id)"
