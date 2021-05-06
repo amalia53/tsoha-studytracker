@@ -171,7 +171,7 @@ def add_grade():
 	print("course: ", course)
 	grade = request.form["grade"]
 	print("grade: ", grade)
-	# teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
+	teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
 	return redirect("/gradecourse")
 
 @app.route("/graded", methods=["POST"])
