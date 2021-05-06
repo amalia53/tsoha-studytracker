@@ -151,6 +151,10 @@ def teacher_page():
 def grade():
 	return render_template("grade.html")
 	
+@app.route("/gradecourse")
+def grade_course():
+	return render_template("grade_course.html")
+	
 @app.route("/courses")
 def courses_page():
 	if session["username"]:
