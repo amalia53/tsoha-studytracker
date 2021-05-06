@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, session
 from os import getenv
 
 
-import users, student, teacher
+import users, student, teacher, courses
 
 app.secret_key = getenv("SECRET_KEY")
 

@@ -27,6 +27,7 @@ def get_students_from_course(course):
 
 def add_grade(student, course, grade):
 	course_id = student.get_course_id(course)
+	print(course_id)
 	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id"
 	db.session.execute(sql, {"grade":grade, "course_id":course_id, "user_id":student})
 	db.session.commit()
