@@ -167,7 +167,7 @@ def grade_course():
 	
 @app.route("/addgrade", methods=["POST"])
 def add_grade():
-#	teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
+	teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
 #	return redirect("/gradecourse")
 	return render_template("notallowed.html")
 
