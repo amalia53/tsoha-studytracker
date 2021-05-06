@@ -7,15 +7,13 @@ def login(username, pw):
     sql = "SELECT pw FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    user_pw = user[0]
     sql = "SELECT role FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
-    user = result.fetchone() 
-    role = user[0]
-    if user_pw == None:
+    role = result.fetchone() 
+    if user == None:
         return "invalid_username"
-    else: 		
-        return check_pw(user_pw, pw, role)
+    else:
+        return check_pw(user[0], pw, role[0])
         
 def check_pw(user_pw, pw, role):
     hash_pw = user_pw
