@@ -3,13 +3,13 @@
 <p>
 <form action="/addgrade" method="POST">
 Opiskelija: 
-<select name="student" method="GET" action="/" required>
+<select name="student" method="GET" action="/">
     {% for student in students %}
     <option value= "{{ student[0] }}" SELECTED> {{ student[0] }}
     {% endfor %}
 </select> 
 Arvosana: 
-<input type="number" name="studied" size="3" required>
+<input type="number" name="studied" size="3">
 <p>
 <input type="submit" value="Lisää arvosana">
 <form>
