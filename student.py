@@ -33,7 +33,8 @@ def delete_from_plan(course, username):
 def get_course_id(course):
     sql = "SELECT id FROM courses WHERE course=:course"
     result = db.session.execute(sql, {"course":course})
-    return result.fetchone()[0]
+    course_id = result.fetchone()
+    return course_id[0]
     
 def get_students_ongoing_courses(username):
     user_id = users.get_user_id(username)
