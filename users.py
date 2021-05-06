@@ -44,7 +44,7 @@ def register(username, pw, verification, role):
     sql = "SELECT username FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    if not user:
+    if user == "[]":
         if pw == verification:
             hash_pw = generate_password_hash(pw)
             sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
