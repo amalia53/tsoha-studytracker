@@ -11,10 +11,11 @@ def get_teacher_id(username):
 	user_id = users.get_user_id(username)[0]
 	sql = "SELECT id FROM teachers WHERE user_id=:user_id"
 	result = db.session.execute(sql, {"user_id":user_id})
-	return result.fetchone()
+	teacher_id = result.fetchone()[0]
+	return teacher_id
 	
 def get_teachers_ongoing_courses(username):
-	teacher_id = get_teacher_id(username)[0]
+	teacher_id = get_teacher_id(username)
 	sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
 	result = db.session.execute(sql, {"teacher_id":teacher_id})
 	return result.fetchall()
@@ -25,9 +26,24 @@ def get_students_from_course(course):
 	result = db.session.execute(sql, {"course_id":course_id})
 	return result.fetchall()
 
+def get_ongoing_courses_table(username):
+	teacher_id = get_teacher_id(username)
+	sql = "SELECT course, id FROM courses WHERE teacher_id=:teacher_id"
+	result = db.session.execute(sql, {"teacher_id":teacher_id})
+	results = result.fetchall()
+	counts = []
+	courses = []
+	for course in results:
+		sql = "SELECT COUNT(*) FROM goals WHERE course_id=:course_id AND NOT deleted"
+		result = db.session.execute(sql, {"course_id":course[1]})
+		count = result.fetchone()
+		courses.append(course[0])
+		counts.append(count[0])
+	return courses, counts
+
 def add_grade(student_id, course, grade):
 	course_id = student.get_course_id(course)
-	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id"
+	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id AND NOT deleted"
 	db.session.execute(sql, {"grade":grade, "course_id":course_id, "user_id":student_id})
 	db.session.commit()
 	
