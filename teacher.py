@@ -10,8 +10,8 @@ def add_teacher(name, user_id):
 def get_teacher_id(user_id):
 	sql = "SELECT id FROM teachers WHERE user_id=:user_id"
 	result = db.session.execute(sql, {"user_id":user_id})
-	teacher_id = result.fetchone()[0]
-	return teacher_id
+	teacher_id = result.fetchone()
+	return teacher_id[0]
 	
 def get_teachers_ongoing_courses(user_id):
 	teacher_id = get_teacher_id(user_id)
