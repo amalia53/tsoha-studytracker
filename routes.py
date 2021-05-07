@@ -9,7 +9,7 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	username = user.get_username(session["user_id"])
+	username = users.get_username(session["user_id"])
 	return render_template("index.html", username)
 
 @app.route("/login", methods=["POST"])
@@ -74,7 +74,7 @@ def student_page():
 		goals = student.get_students_ongoing_goals(session["user_id"])
 		studied = student.get_students_ongoing_studies(session["user_id"])
 		done = student.get_done(studentcourses, goals, studied)
-		username = user.get_username(session["user_id"])
+		username = users.get_username(session["user_id"])
 		return render_template("student.html", studentcourses = studentcourses, goals = goals, studied = studied, done = done, username = username)
 	else:
 		return render_template("notallowed.html")
@@ -144,7 +144,7 @@ def teacher_page():
 		results = teacher.get_ongoing_courses_table(session["user_id"])
 		courses = results[0]
 		student_counts = results[1]
-		username = user.get_username(session["user_id"])
+		username = users.get_username(session["user_id"])
 		return render_template("teacher.html", courses = courses, student_counts = student_counts, username = username)
 	else:
 		return render_template("notallowed.html")
