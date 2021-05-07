@@ -40,17 +40,28 @@ def register(username, pw, verification, role):
     sql = "SELECT username FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    if user == None:
-        if pw == verification:
-            hash_pw = generate_password_hash(pw)
-            sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
-            db.session.execute(sql, {"username":username, "pw":hash_pw, "role":role})
-            db.session.commit()
-            return "ok"
-        else:
-            return "no_match"
+    if check_input(username, pw) == "ok":  	
+	    if user == None:
+		if pw == verification:
+		    hash_pw = generate_password_hash(pw)
+		    sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
+		    db.session.execute(sql, {"username":username, "pw":hash_pw, "role":role})
+		    db.session.commit()
+		    return "ok"
+		else:
+		    return "no_match"
+	    else:
+		return "user_found"
     else:
-        return "user_found"	
+        return check_input(username, pw)
+    	
+def check_input(username, pw):
+	if len(username) < 5:
+		return "username_too_short"
+	elif len(pw) < 8:
+		return "pw_too_short"
+	else:
+		return "ok"
         
 def get_user_id(username):
 	sql = "SELECT id FROM users WHERE username=:username"
