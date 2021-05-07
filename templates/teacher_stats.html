@@ -1,0 +1,21 @@
+<title>Opettajan tilastot</title>
+<h1>Tilastot</h1>
+<p>
+<table>
+<tr>
+  <th>Kurssi</th>
+  <th>Oppilaita</th>
+  <th>Arvosanojen keskiarvo</th>
+  <th>Opiskelutuntien keskiarvo</th>
+<tr>
+{% for i in range(courses|length) %}
+<tr>
+  <td>{{ courses[i] }}</td>
+  <td>{{ student_counts[i] }} </td>
+  <td>{{ grades[i] }}</td>
+  <td>{{ studies[i] }}%</td>
+<tr>
+{% endfor %}
+</table>
+<p>
+<a href="/teacher">Oma sivu</a>

@@ -28,7 +28,7 @@ def teacher_reg(username, name, pw, verification, code):
     if code == "4278":
         reg = register(username, pw, verification, "teacher")
         if reg == "ok":
-        	user_id = get_user_id(username)[0]
+        	user_id = get_user_id(username)
         	teacher.add_teacher(name, user_id)
         	return "ok"
         else:
@@ -55,9 +55,12 @@ def register(username, pw, verification, role):
 def get_user_id(username):
 	sql = "SELECT id FROM users WHERE username=:username"
 	result = db.session.execute(sql, {"username":username})
-	return result.fetchone()
+	user_id = result.fetchone()
+	return user_id[0]
     
-def get_user_role(username):
-	sql = "SELECT role FROM users WHERE username=:username"
-	result = db.session.execute(sql, {"username":username})
-	return result.fetchone()
+def get_username(user_id):
+	sql = "SELECT username FROM users WHERE user_id=:user_id"
+	result = db.session.execute(sql, {"user_id":user_id})
+	username = result.fetchone()
+	return username[0]
+    
