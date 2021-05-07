@@ -149,6 +149,8 @@ def teacher_page():
 		print("teacher_page():")
 		print("courses: ", courses)
 		print("studentcounts: ", student_counts)
+		print("Eka rivi:", courses[0], student_counts[0])
+		print("Toka rivi:", courses[1], student_counts[1])
 		return render_template("teacher.html", courses = courses, student_counts = student_counts)
 	else:
 		return render_template("notallowed.html")
