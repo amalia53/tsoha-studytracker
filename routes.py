@@ -16,18 +16,31 @@ def login():
 	username = request.form["username"]
 	pw = request.form["password"]
 	login = users.login(username, pw)
-	if login == "invalid_username":
-		return render_template("invalid.html", invalid = "käyttäjätunnus")
-	elif login == "invalid_pw":
-		return render_template("invalid.html", invalid = "salasana")
-	elif login == "teacher":
-		session["username"] = username
-		session["role"] = "teacher"
-		return redirect("/teacher")
+	if login[0] == "invalid":
+		if login[1] == "username":
+			return render_template("invalid.html", invalid = "käyttäjätunnus")
+		else:
+			return render_template("invalid.html", invalid = "salasana")
 	else:
-		session["username"] = username
-		session["role"] = "student"
-		return redirect("/student")
+		session["user_id"] = login[0]
+		if login[1] == "teacher"
+			session["role"] = "teacher"
+			return redirect("/teacher")
+		else:
+			session["role"] = "student"
+			return redirect("/student")
+#	if login == "invalid_username":
+#		return render_template("invalid.html", invalid = "käyttäjätunnus")
+#	elif login == "invalid_pw":
+#		return render_template("invalid.html", invalid = "salasana")
+#	elif login == "teacher":
+#		session["username"] = username
+#		session["role"] = "teacher"
+#		return redirect("/teacher")
+#	else:
+#		session["username"] = username
+#		session["role"] = "student"
+#		return redirect("/student")
 
 @app.route("/logout")
 def logout():
@@ -146,11 +159,6 @@ def teacher_page():
 		results = teacher.get_ongoing_courses_table(session["username"])
 		courses = results[0]
 		student_counts = results[1]
-		print("teacher_page():")
-		print("courses: ", courses)
-		print("studentcounts: ", student_counts)
-		print("Eka rivi:", courses[0], student_counts[0])
-		print("Toka rivi:", courses[1], student_counts[1])
 		return render_template("teacher.html", courses = courses, student_counts = student_counts)
 	else:
 		return render_template("notallowed.html")
