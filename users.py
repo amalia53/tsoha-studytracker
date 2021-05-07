@@ -35,7 +35,7 @@ def teacher_reg(username, name, pw, verification, code):
         	return reg
     else:
         return "not_authenticated" 
-
+        
 def register(username, pw, verification, role):
     sql = "SELECT username FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
@@ -50,7 +50,7 @@ def register(username, pw, verification, role):
         else:
             return "no_match"
     else:
-        return "user_found"
+        return "user_found"	
         
 def get_user_id(username):
 	sql = "SELECT id FROM users WHERE username=:username"

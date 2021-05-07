@@ -2,13 +2,30 @@
 <title>Student Registration</title>
 <h1> Rekisteröidy oppilaaksi</h1>
 <p>
-Anna käyttäjätunnus: <input type="text" name="username" required>
+Anna käyttäjätunnus: <input type="text" name="username" required> <br>
+Käyttäjätunnuksen tulee olla vähintään viisi merkkiä pitkä.
 <p>
-Anna salasana: <input type="password" name="password" required>
+Anna salasana: <input type="password" name="password" required> <br>
+Salasanan tulee olla vähintään kahdeksan merkkiä pitkä.
 <p>
 Salasana uudelleen: <input type="password" name="verification" required>
 <p>
 <input type="submit" name="Rekisteröidy">
+</form>
+
+<script>
+function check(form) {
+    if (form.username.value.length < 5) {
+        alert("Käyttäjätunnus on liian lyhyt");
+        return false;
+    }
+    if (form.password.value.length < 8) {
+        alert("Salasana on liian lyhyt");
+        return false;
+    }
+    return true;
+}
+</script>
+
 <p>
 <a href="/">Etusivulle</a>
-</form>

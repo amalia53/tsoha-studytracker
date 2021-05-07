@@ -55,10 +55,14 @@ def welcome_stu():
 	registeration = users.student_reg(username, request.form["password"], request.form["verification"])
 	if  registeration == "ok":
 		return render_template("welcome.html", username=username)
+	elif registeration == "username_too_short":
+		return render_template("reg_failed.html", error="käyttäjätunnus oli alle viisi merkkiä pitkä")
+	elif registeration == "pw_too_short":
+		return render_template("reg_failed.html", error="salaasana oli alle kahdeksan merkkiä pitkä")
 	elif registeration == "no_match":
-		return render_template("reg_failed.html", error="salasanat eivät täsmänneet", role="student")
+		return render_template("reg_failed.html", error="salasanat eivät täsmänneet")
 	else:
-		return render_template("reg_failed.html", error="käyttäjänimi on jo käytössä",  role="student")
+		return render_template("reg_failed.html", error="käyttäjänimi on jo käytössä")
 
 @app.route("/welcometeacher", methods=["POST"])
 def welcome_teacher():
@@ -66,6 +70,10 @@ def welcome_teacher():
 	registeration = users.teacher_reg(username, request.form["name"], request.form["password"], request.form["verification"], request.form["code"])
 	if  registeration == "ok":
 		return render_template("welcome.html", username = username)
+	elif registeration == "username_too_short":
+		return render_template("reg_failed.html", error="käyttäjätunnus oli alle viisi merkkiä pitkä")
+	elif registeration == "pw_too_short":
+		return render_template("reg_failed.html", error="salaasana oli alle kahdeksan merkkiä pitkä")
 	elif registeration == "no_match":
 		return render_template("reg_failed.html", error="salasanat eivät täsmänneet",  role="teacher")
 	elif registeration == "not_authenticated":
