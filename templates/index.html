@@ -10,7 +10,7 @@ Sovellukseen voi tulevaisuudessa kirjautua myös opettajana.
 
 <p>
 
-{% if session.username %}
+{% if session.user_id %}
 <b>Olet kirjautunut käyttäjänä {{ username }} </b>
 <p>
 {% if session.role == "student" %}

@@ -9,6 +9,7 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
+	print(session["user_id"])
 	username = ""
 	if session["user_id"]:
 		username = users.get_username(session["user_id"])
@@ -34,7 +35,6 @@ def login():
 @app.route("/logout")
 def logout():
 	del session["user_id"]
-	session["logged_in"] = False
 	return redirect("/")
 
 @app.route("/stureg")
