@@ -9,7 +9,10 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-	return render_template("index.html")
+	username = ""
+	if "user_id" in session:
+		username = users.get_username(session["user_id"])
+	return render_template("index.html", username=username)
 
 @app.route("/login", methods=["POST"])
 def login():
