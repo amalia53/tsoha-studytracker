@@ -69,6 +69,7 @@ def welcome_teacher():
 @app.route("/student")
 def student_page():
 	if session["role"] == "student":
+		print(session["role"]
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
 		goals = student.get_students_ongoing_goals(session["user_id"])
 		studied = student.get_students_ongoing_studies(session["user_id"])
