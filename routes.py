@@ -10,8 +10,7 @@ app.secret_key = getenv("SECRET_KEY")
 @app.route("/")
 def index():
 	username = ""
-	if session["user_id"]:
-		print(session["user_id"])
+	if session["user_id"] != None:
 		username = users.get_username(session["user_id"])
 	return render_template("index.html", username = username)
 
@@ -34,7 +33,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-	del session["user_id"]
+	session["user_id"] == None
 	return redirect("/")
 
 @app.route("/stureg")
@@ -203,7 +202,7 @@ def teacher_stats():
 	
 @app.route("/courses")
 def courses_page():
-	if session["user_id"]:
+	if session["user_id"] != None:
 		courses = teacher.get_courses()
 		courses.sort()
 		return render_template("courses.html", courses = courses)
