@@ -31,6 +31,7 @@ def login():
 @app.route("/logout")
 def logout():
 	del session["user_id"]
+	del session["role"]
 	return redirect("/")
 
 @app.route("/stureg")
