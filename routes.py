@@ -13,9 +13,7 @@ def index():
 
 @app.route("/login", methods=["POST"])
 def login():
-	username = request.form["username"]
-	pw = request.form["password"]
-	login = users.login(username, pw)
+	login = users.login(request.form["username"], request.form["password"])
 	if login[0] == "invalid":
 		if login[1] == "username":
 			return render_template("invalid.html", invalid = "käyttäjätunnus")
@@ -23,7 +21,7 @@ def login():
 			return render_template("invalid.html", invalid = "salasana")
 	else:
 		session["user_id"] = login[0]
-		if login[1] == "teacher"
+		if login[1] == "teacher":
 			session["role"] = "teacher"
 			return redirect("/teacher")
 		else:
