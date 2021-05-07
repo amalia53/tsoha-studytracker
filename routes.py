@@ -145,10 +145,10 @@ def teacher_page():
 	if session["role"] == "teacher":
 		results = teacher.get_ongoing_courses_table(session["username"])
 		courses = results[0]
-		student_counts = results[0]
+		student_counts = results[1]
 		print("teacher_page():")
 		print("courses: ", courses)
-		print("studentcounts: ", courses)
+		print("studentcounts: ", student_counts)
 		return render_template("teacher.html", courses = courses, student_counts = student_counts)
 	else:
 		return render_template("notallowed.html")
