@@ -21,6 +21,7 @@ Sovellukseen voi tulevaisuudessa kirjautua myös opettajana.
 <p>
 <a href="/logout">Kirjaudu ulos</a>
 <p>
+
 {% else %}
 <form action="/login" method="POST">
 <h1>Kirjaudu sisään</h1>
@@ -31,6 +32,7 @@ Salasana: <input type="password" name="password" size=30 required>
 <p>
 <input type="submit" value="Kirjaudu">
 </form>
+
 <p>
 <h3>Eikö vielä tunnusta?</h3>
 Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>!

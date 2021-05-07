@@ -33,9 +33,13 @@ def login():
 
 @app.route("/logout")
 def logout():
-	del session["user_id"]
-	del session["role"]
-	return redirect("/")
+	if "user_id" in session:
+		del session["user_id"]
+		del session["role"]
+		return redirect("/")
+	else:
+		return render_template("notallowed.html")
+		
 
 @app.route("/stureg")
 def stu_reg():

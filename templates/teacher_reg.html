@@ -15,5 +15,20 @@ Anna tunnistautumiskoodi: <input type="password" name="code" required>
 <p>
 <input type="submit" name="Rekisteröidy">
 </form>
+
+<script>
+function check(form) {
+    if (form.username.value.length < 5) {
+        alert("Käyttäjätunnus on liian lyhyt");
+        return false;
+    }
+    if (form.password.value.length < 8) {
+        alert("Salasana on liian lyhyt");
+        return false;
+    }
+    return true;
+}
+</script>
+
 <p>
 <a href="/">Etusivu</a>
