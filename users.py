@@ -17,7 +17,7 @@ def check_pw(results, pw):
     user_role = results[0][1]
     user_id = results[0][2]
     if check_password_hash(hash_pw, pw):
-    	return user_id, role
+    	return user_id, user_role
     else:
         return "invalid", "password"
 
