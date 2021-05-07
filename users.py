@@ -41,19 +41,19 @@ def register(username, pw, verification, role):
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if check_input(username, pw) == "ok":  	
-	    if user == None:
+    	if user == None:
 		if pw == verification:
-		    hash_pw = generate_password_hash(pw)
-		    sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
-		    db.session.execute(sql, {"username":username, "pw":hash_pw, "role":role})
-		    db.session.commit()
+			hash_pw = generate_password_hash(pw)
+			sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
+			db.session.execute(sql, {"username":username, "pw":hash_pw, "role":role})
+			db.session.commit()
 		    return "ok"
 		else:
 		    return "no_match"
-	    else:
+	else:
 		return "user_found"
     else:
-        return check_input(username, pw)
+    	return check_input(username, pw)
     	
 def check_input(username, pw):
 	if len(username) < 5:
