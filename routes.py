@@ -201,7 +201,7 @@ def teacher_stats():
 	
 @app.route("/courses")
 def courses_page():
-	if session["user_id"]:
+	if "user_id" in session:
 		courses = teacher.get_courses()
 		courses.sort()
 		return render_template("courses.html", courses=courses)
