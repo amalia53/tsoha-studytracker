@@ -59,7 +59,7 @@ def get_user_id(username):
 	return user_id[0]
     
 def get_username(user_id):
-	sql = "SELECT username FROM users WHERE user_id=:user_id"
+	sql = "SELECT username FROM users WHERE id=:user_id"
 	result = db.session.execute(sql, {"user_id":user_id})
 	username = result.fetchone()
 	return username[0]
