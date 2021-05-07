@@ -193,9 +193,8 @@ def graded():
 @app.route("/teacherstats")
 def teacher_stats():
 	if session["role"] == "teacher":
-		results = get_stats_table(session["user_id"]
+		results = get_stats_table(session["user_id"])
 		return render_template("teacher_stats.html", courses = results[0], student_counts = results[1], grade = results[2], studied = results[3])
-
 	else:
 		return render_template("notallowed.html")
 
