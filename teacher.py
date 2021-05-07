@@ -33,12 +33,17 @@ def get_ongoing_courses_table(username):
 	results = result.fetchall()
 	counts = []
 	courses = []
+	print("get_ongoing_courses_table(usename):")
 	for course in results:
 		sql = "SELECT COUNT(*) FROM goals WHERE course_id=:course_id AND NOT deleted"
 		result = db.session.execute(sql, {"course_id":course[1]})
 		count = result.fetchone()
+		print("count:", count[0])
+		print("course:", course[0])
 		courses.append(course[0])
 		counts.append(count[0])
+	print("counts:" , counts)
+	print("courses:" , courses)
 	return courses, counts
 
 def add_grade(student_id, course, grade):
