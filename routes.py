@@ -57,13 +57,13 @@ def welcome_stu():
 	if  registeration == "ok":
 		return render_template("welcome.html", username=username)
 	elif registeration == "username_too_short":
-		return render_template("reg_failed.html", error="käyttäjätunnus oli alle viisi merkkiä pitkä", role=role)
+		return render_template("reg_failed.html", error="käyttäjätunnus oli alle viisi merkkiä pitkä.", role=role)
 	elif registeration == "pw_too_short":
-		return render_template("reg_failed.html", error="salaasana oli alle kahdeksan merkkiä pitkä", role=role)
+		return render_template("reg_failed.html", error="salasana oli alle kahdeksan merkkiä pitkä.", role=role)
 	elif registeration == "no_match":
-		return render_template("reg_failed.html", error="salasanat eivät täsmänneet", role=role)
+		return render_template("reg_failed.html", error="salasanat eivät täsmänneet.", role=role)
 	else:
-		return render_template("reg_failed.html", error="käyttäjänimi on jo käytössä", role=role)
+		return render_template("reg_failed.html", error="käyttäjänimi on jo käytössä.", role=role)
 
 @app.route("/welcometeacher", methods=["POST"])
 def welcome_teacher():
@@ -73,15 +73,15 @@ def welcome_teacher():
 	if  registeration == "ok":
 		return render_template("welcome.html", username = username)
 	elif registeration == "username_too_short":
-		return render_template("reg_failed.html", error="käyttäjätunnus oli alle viisi merkkiä pitkä", role=role)
+		return render_template("reg_failed.html", error="käyttäjätunnus oli alle viisi merkkiä pitkä.", role=role)
 	elif registeration == "pw_too_short":
-		return render_template("reg_failed.html", error="salaasana oli alle kahdeksan merkkiä pitkä", role=role)
+		return render_template("reg_failed.html", error="salasana oli alle kahdeksan merkkiä pitkä.", role=role)
 	elif registeration == "no_match":
-		return render_template("reg_failed.html", error="salasanat eivät täsmänneet",  role=role)
+		return render_template("reg_failed.html", error="salasanat eivät täsmänneet.",  role=role)
 	elif registeration == "not_authenticated":
-		return render_template("reg_failed.html", error="väärä tunnistautumiskoodi", role=role)
+		return render_template("reg_failed.html", error="väärä tunnistautumiskoodi.", role=role)
 	else:
-		return render_template("reg_failed.html", error="käyttäjänimi on jo käytössä", role=role)
+		return render_template("reg_failed.html", error="käyttäjänimi on jo käytössä.", role=role)
 
 @app.route("/student")
 def student_page():
