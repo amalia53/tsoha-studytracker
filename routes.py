@@ -86,9 +86,7 @@ def welcome_teacher():
 @app.route("/student")
 def student_page():
 	if "role" in session and session["role"] == "student":
-		print(session["role"])
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
-		# goals = student.get_students_ongoing_courses_info(session["user_id"])
 		done = student.get_done(studentcourses[2], studentcourses[3])
 		username = users.get_username(session["user_id"])
 		return render_template("student.html", studentcourses=studentcourses[1], goals=studentcourses[2], studied=studentcourses[3], done=done, username=username)
@@ -125,9 +123,8 @@ def plan():
 	if "role" in session and session["role"] == "student":
 		courses = student.get_courses_student_has_not_added(session["user_id"])
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
-		goals = student.get_students_ongoing_courses_info(session["user_id"])
-		done = student.get_done(studentcourses[0], goals[0], goals[1])
-		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourse_ids=studentcourses[0], studentcourses=studentcourses[1], goals=goals[0], studied=goals[1], done=done)
+		done = student.get_done(studentcourses[2], studentcourses[3])
+		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourse_ids=studentcourses[0], studentcourses=studentcourses[1], goals=studentcourses[2], studied=studentcourses[3], done=done)
 	else:
 		return render_template("notallowed.html")
 	
@@ -220,4 +217,3 @@ def course_added():
 	else:
 		student.add_course(request.form["course"])
 	return redirect("/courses")
-
