@@ -11,8 +11,8 @@
 {% for i in range(studentcourses|length) %}
 <tr>
   <td>{{ studentcourses[i] }}</td>
-  <td>{{ goals[i][0] }} </td>
-  <td>{{ studied[i][0] }}</td>
+  <td>{{ goals[i] }} </td>
+  <td>{{ studied[i] }}</td>
   <td>{{ done[i] }} %</td>
 <tr>
 {% endfor %}

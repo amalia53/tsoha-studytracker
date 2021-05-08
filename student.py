@@ -57,15 +57,11 @@ def get_students_goals(user_id):
     result = db.session.execute(sql, {"user_id":user_id})
     return add_to_arrays(result.fetchall())
     
-def get_students_ongoing_goals(user_id):
+def get_students_ongoing_courses_info(user_id):
     sql = "SELECT goal, studied FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY courses.course ASC"
     result = db.session.execute(sql, {"user_id":user_id})
     return add_to_arrays(result.fetchall())
     
-def get_students_ongoing_studies(user_id):
-    sql = "SELECT studied FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY courses.course ASC"
-    result = db.session.execute(sql, {"user_id":user_id})
-    return result.fetchall()     
     
 def get_students_studies(user_id):
     sql = "SELECT studied FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted ORDER BY courses.course ASC"

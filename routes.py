@@ -88,8 +88,7 @@ def student_page():
 	if "role" in session and session["role"] == "student":
 		print(session["role"])
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
-		goals = student.get_students_ongoing_goals(session["user_id"])
-		# studied = student.get_students_ongoing_studies(session["user_id"])
+		goals = student.get_students_ongoing_courses_info(session["user_id"])
 		done = student.get_done(studentcourses[1], goals[0], goals[1])
 		username = users.get_username(session["user_id"])
 		return render_template("student.html", studentcourses=studentcourses[1], goals=goals[0], studied=goals[1], done=done, username=username)
@@ -126,10 +125,9 @@ def plan():
 	if "role" in session and session["role"] == "student":
 		courses = student.get_courses_student_has_not_added(session["user_id"])
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
-		goals = student.get_students_ongoing_goals(session["user_id"])
-		studied = student.get_students_ongoing_studies(session["user_id"])
-		done = student.get_done(studentcourses[0], goals, studied)
-		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourse_ids=studentcourses[0], studentcourses=studentcourses[1], goals=goals, studied=studied, done=done)
+		goals = student.get_students_ongoing_courses_info(session["user_id"])
+		done = student.get_done(studentcourses[0], goals[0], goals[1])
+		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourse_ids=studentcourses[0], studentcourses=studentcourses[1], goals=goals[0], studied=goals[1], done=done)
 	else:
 		return render_template("notallowed.html")
 	
