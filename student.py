@@ -38,7 +38,7 @@ def add_to_arrays(results):
         result2.append(result[1])
         result3.append(result[2])
         result4.append(result[3])
-    return result1, result2
+    return result1, result2, result3, result4
 
 def get_students_ongoing_courses(user_id):
     sql = "SELECT c.id, c.course, goal, studied FROM goals g JOIN courses c ON g.course_id = c.id WHERE g.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY course ASC"
