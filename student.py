@@ -29,7 +29,7 @@ def get_course_id(course):
     return course_id[0]
     
 def get_students_ongoing_courses(user_id):
-    sql = "SELECT id, course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY course ASC"
+    sql = "SELECT c.id, c.course FROM goals g JOIN courses c ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY course ASC"
     result = db.session.execute(sql, {"user_id":user_id})
     return add_to_arrays(result.fetchall())
     
