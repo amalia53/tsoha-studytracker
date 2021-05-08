@@ -28,11 +28,11 @@ def teacher_reg(username, name, pw, verification, code):
     if code == "4278":
         reg = register(username, pw, verification, "teacher")
         if reg == "ok":
-        	user_id = get_user_id(username)
-        	teacher.add_teacher(name, user_id)
-        	return "ok"
+            user_id = get_user_id(username)
+            teacher.add_teacher(name, user_id)
+            return "ok"
         else:
-        	return reg
+            return reg
     else:
         return "not_authenticated" 
         
@@ -42,36 +42,36 @@ def register(username, pw, verification, role):
     user = result.fetchone()
     if check_input(username, pw) == "ok":  	
     	if user == None:
-		if pw == verification:
-			hash_pw = generate_password_hash(pw)
-			sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
-			db.session.execute(sql, {"username":username, "pw":hash_pw, "role":role})
-			db.session.commit()
-		    return "ok"
-		else:
-		    return "no_match"
+	    if pw == verification:
+		hash_pw = generate_password_hash(pw)
+		sql = "INSERT INTO users (username, pw, role) VALUES (:username, :pw, :role)"
+		db.session.execute(sql, {"username":username, "pw":hash_pw, "role":role})
+		db.session.commit()
+		return "ok"
+	    else:
+		return "no_match"
 	else:
-		return "user_found"
+	    return "user_found"
     else:
     	return check_input(username, pw)
     	
 def check_input(username, pw):
-	if len(username) < 5:
-		return "username_too_short"
-	elif len(pw) < 8:
-		return "pw_too_short"
-	else:
-		return "ok"
+    if len(username) < 5:
+	return "username_too_short"
+    elif len(pw) < 8:
+	return "pw_too_short"
+    else:
+	return "ok"
         
 def get_user_id(username):
-	sql = "SELECT id FROM users WHERE username=:username"
-	result = db.session.execute(sql, {"username":username})
-	user_id = result.fetchone()
-	return user_id[0]
+    sql = "SELECT id FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user_id = result.fetchone()
+    return user_id[0]
     
 def get_username(user_id):
-	sql = "SELECT username FROM users WHERE id=:user_id"
-	result = db.session.execute(sql, {"user_id":user_id})
-	username = result.fetchone()
-	return username[0]
+    sql = "SELECT username FROM users WHERE id=:user_id"
+    result = db.session.execute(sql, {"user_id":user_id})
+    username = result.fetchone()
+    return username[0]
     
