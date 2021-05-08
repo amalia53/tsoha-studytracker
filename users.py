@@ -49,7 +49,7 @@ def register(username, pw, verification, role):
                 db.session.commit()
                 return "ok"
             else:
-	        return "no_match"
+                return "no_match"
 	else:
 	    return "user_found"
     else:
