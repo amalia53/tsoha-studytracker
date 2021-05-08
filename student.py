@@ -2,8 +2,8 @@ from db import db
 
 import users
 
-def start_course(course, goal, user_id):
-    course_id = get_course_id(course)
+def start_course(course_id, goal, user_id):
+#    course_id = get_course_id(course)
     sql = "INSERT INTO goals (user_id, course_id, goal, studied) VALUES (:user_id, :course_id, :goal, :studied)"
     db.session.execute(sql, {"user_id":user_id, "course_id":course_id, "goal":goal, "studied":0})
     db.session.commit()
@@ -53,7 +53,7 @@ def add_to_arrays(results):
     return result1, result2
 
 def get_courses_student_has_not_added(user_id):
-    sql = "SELECT id, course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE user_id=:user_id AND NOT deleted)"
+    sql = "SELECT id, course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE user_id=:user_id AND NOT deleted ORDER BY course ASC)"
     result = db.session.execute(sql, {"user_id":user_id})
     return add_to_arrays(result.fetchall())
 
