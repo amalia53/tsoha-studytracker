@@ -130,8 +130,7 @@ def plan():
 		goals = student.get_students_ongoing_goals(session["user_id"])
 		studied = student.get_students_ongoing_studies(session["user_id"])
 		done = student.get_done(studentcourses, goals, studied)
-		courses.sort()
-		return render_template("plan.html", courses=courses, studentcourses=studentcourses, goals=goals, studied=studied, done=done)
+		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourses=studentcourses, goals=goals, studied=studied, done=done)
 	else:
 		return render_template("notallowed.html")
 	
@@ -177,11 +176,8 @@ def grade():
 	
 @app.route("/selectcourse", methods=["POST"])
 def select_course():
-	if "role" in session and session["role"] == "teacher":
-		session["course"] = request.form["course"]
-		return redirect("/gradecourse")
-	else:
-		return render_template("notallowed.html")
+	session["course"] = request.form["course"]
+	return redirect("/gradecourse")
 	
 @app.route("/gradecourse")
 def grade_course():
@@ -193,11 +189,8 @@ def grade_course():
 	
 @app.route("/addgrade", methods=["POST"])
 def add_grade():
-	if "role" in session and session["role"] == "teacher":
-		teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
-		return redirect("/gradecourse")
-	else:
-		return render_template("notallowed.html")
+	teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
+	return redirect("/gradecourse")
 
 @app.route("/graded", methods=["POST"])
 def graded():
