@@ -89,10 +89,10 @@ def student_page():
 		print(session["role"])
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
 		goals = student.get_students_ongoing_goals(session["user_id"])
-		studied = student.get_students_ongoing_studies(session["user_id"])
+		# studied = student.get_students_ongoing_studies(session["user_id"])
 		done = student.get_done(studentcourses[1], goals, studied)
 		username = users.get_username(session["user_id"])
-		return render_template("student.html", studentcourses=studentcourses[1], goals=goals, studied=studied, done=done, username=username)
+		return render_template("student.html", studentcourses=studentcourses[1], goals=goals[0], studied=studied[1], done=done, username=username)
 	else:
 		return render_template("notallowed.html")
 	
