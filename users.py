@@ -50,18 +50,18 @@ def register(username, pw, verification, role):
                 return "ok"
             else:
                 return "no_match"
-	else:
-	    return "user_found"
+        else:
+            return "user_found"
     else:
         return check_input(username, pw)
     	
 def check_input(username, pw):
     if len(username) < 5:
-	return "username_too_short"
+        return "username_too_short"
     elif len(pw) < 8:
-	return "pw_too_short"
+        return "pw_too_short"
     else:
-	return "ok"
+        return "ok"
         
 def get_user_id(username):
     sql = "SELECT id FROM users WHERE username=:username"
