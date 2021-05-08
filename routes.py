@@ -100,7 +100,6 @@ def student_page():
 def study():
 	if "role" in session and session["role"] == "student":
 		courses = student.get_students_ongoing_courses(session["user_id"])
-		courses.sort()
 		return render_template("study.html", courses=courses)
 	else:
 		return render_template("notallowed.html")
@@ -129,7 +128,7 @@ def plan():
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
 		goals = student.get_students_ongoing_goals(session["user_id"])
 		studied = student.get_students_ongoing_studies(session["user_id"])
-		done = student.get_done(studentcourses, goals, studied)
+		done = student.get_done(studentcourses[0], goals, studied)
 		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourse_ids=studentcourses[0], studentcourses=studentcourses[1], goals=goals, studied=studied, done=done)
 	else:
 		return render_template("notallowed.html")
@@ -169,7 +168,6 @@ def teacher_page():
 def grade():
 	if "role" in session and session["role"] == "teacher":
 		courses = teacher.get_teachers_ongoing_courses(session["user_id"])
-		courses.sort()
 		return render_template("grade.html", courses=courses)
 	else:
 		return render_template("notallowed.html")
@@ -213,7 +211,6 @@ def teacher_stats():
 def courses_page():
 	if "user_id" in session:
 		courses = teacher.get_courses()
-		courses.sort()
 		return render_template("courses.html", courses=courses)
 	else:
 		return render_template("notallowed.html")

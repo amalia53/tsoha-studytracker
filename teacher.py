@@ -71,7 +71,6 @@ def add_course(course, user_id):
 	db.session.commit()
 	
 def get_courses():
-	result = db.session.execute("SELECT course FROM courses")
+	result = db.session.execute("SELECT course FROM courses ORDER BY course ASC")
 	courses = result.fetchall()
-	courses.sort()
 	return courses
