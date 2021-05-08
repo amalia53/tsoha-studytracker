@@ -23,7 +23,7 @@
 Valitse kurssi: 
 <select name="course" method="GET" action="/">
     {% for i in range(courses|length)  %}
-    <option value= "{{ course_id[i] }}" SELECTED> {{ course[i] }}
+    <option value= "{{ course_ids[i] }}" SELECTED> {{ courses[i] }}
     {% endfor %}
 </select>
 <p>
