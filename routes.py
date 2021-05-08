@@ -92,7 +92,7 @@ def student_page():
 		# studied = student.get_students_ongoing_studies(session["user_id"])
 		done = student.get_done(studentcourses[1], goals[0], goals[1])
 		username = users.get_username(session["user_id"])
-		return render_template("student.html", studentcourses=studentcourses[1], goals=goals[0], studied=studied[1], done=done, username=username)
+		return render_template("student.html", studentcourses=studentcourses[1], goals=goals[0], studied=goals[1], done=done, username=username)
 	else:
 		return render_template("notallowed.html")
 	
