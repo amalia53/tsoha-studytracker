@@ -7,7 +7,7 @@ def start_course(course, goal, user_id):
     sql = "INSERT INTO goals (user_id, course_id, goal, studied) VALUES (:user_id, :course_id, :goal, :studied)"
     db.session.execute(sql, {"user_id":user_id, "course_id":course_id, "goal":goal, "studied":0})
     db.session.commit()
-
+    
 def complete_course(course, user_id):
     course_id = get_course_id(course)
     sql = "UPDATE goals SET completed = NOT completed WHERE user_id=:user_id AND course_id=:course_id"
@@ -44,10 +44,19 @@ def get_students_courses(user_id):
     studentcourses = result.fetchall()
     return studentcourses
 
+def add_to_arrays(results):
+    result1 = []
+    result2 = []
+    for result in results:
+        result1.append(result[0])
+        result2.append(result[1])
+    return result1, result2
+
+
 def get_courses_student_has_not_added(user_id):
     sql = "SELECT id, course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE user_id=:user_id AND NOT deleted)"
     result = db.session.execute(sql, {"user_id":user_id})
-    return result.fetchall()
+    return add_to_arrays(result.fetchall())
 
 def get_students_goals(user_id):
     sql = "SELECT goal FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted"
