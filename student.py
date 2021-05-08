@@ -87,13 +87,13 @@ def get_completed(user_id):
 
 def update_studies(user_id, course_id, studied):
     studied = int(studied)
-    studied_pre = get_previous_studies(course, user_id, course_id)
+    studied_pre = get_previous_studies(user_id, course_id)
     studied += studied_pre
     sql = "UPDATE goals SET studied=:studied WHERE user_id=:user_id AND course_id=:course_id"
     result = db.session.execute(sql, {"studied":studied, "course_id":course_id, "user_id":user_id})
     db.session.commit()
 
-def get_previous_studies(course, user_id, course_id):
+def get_previous_studies(user_id, course_id):
     sql = "SELECT studied FROM goals WHERE user_id=:user_id AND course_id=:course_id"
     result = db.session.execute(sql, {"course_id":course_id, "user_id":user_id})
     previous_studies = result.fetchone()
