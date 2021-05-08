@@ -85,8 +85,7 @@ def get_completed(user_id):
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchall() 
 
-def update_studies(user_id, course, studied):
-    course_id = get_course_id(course)
+def update_studies(user_id, course_id, studied):
     studied = int(studied)
     studied_pre = get_previous_studies(course, user_id, course_id)
     studied += studied_pre
