@@ -3,25 +3,21 @@ from db import db
 import users
 
 def start_course(course_id, goal, user_id):
-#    course_id = get_course_id(course)
     sql = "INSERT INTO goals (user_id, course_id, goal, studied) VALUES (:user_id, :course_id, :goal, :studied)"
     db.session.execute(sql, {"user_id":user_id, "course_id":course_id, "goal":goal, "studied":0})
     db.session.commit()
     
-def complete_course(course, user_id):
-    course_id = get_course_id(course)
+def complete_course(course_id, user_id):
     sql = "UPDATE goals SET completed = NOT completed WHERE user_id=:user_id AND course_id=:course_id"
     db.session.execute(sql, {"user_id":user_id, "course_id":course_id})
     db.session.commit()
     
-def change_plan(course, goal, user_id):
-    course_id = get_course_id(course)
+def change_plan(course_id, goal, user_id):
     sql = "UPDATE goals SET goal=:goal WHERE user_id=:user_id AND course_id=:course_id"
     db.session.execute(sql, {"goal":goal, "user_id":user_id, "course_id":course_id})
     db.session.commit()
     
-def delete_from_plan(course, user_id):
-    course_id = get_course_id(course)
+def delete_from_plan(course_id, user_id):
     sql = "UPDATE goals SET deleted = NOT deleted WHERE user_id=:user_id AND course_id=:course_id"
     db.session.execute(sql, {"user_id":user_id, "course_id":course_id})
     db.session.commit()
@@ -33,10 +29,9 @@ def get_course_id(course):
     return course_id[0]
     
 def get_students_ongoing_courses(user_id):
-    sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT completed AND NOT deleted"
+    sql = "SELECT id, course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY course ASC"
     result = db.session.execute(sql, {"user_id":user_id})
-    studentcourses = result.fetchall()
-    return studentcourses
+    return add_to_arrays(result.fetchall())
     
 def get_students_courses(user_id):
     sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted"

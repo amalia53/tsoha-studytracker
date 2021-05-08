@@ -10,7 +10,7 @@
 <tr>
 {% for i in range(studentcourses|length) %}
 <tr>
-  <td>{{ studentcourses[i][0] }}</td>
+  <td>{{ studentcourses[i] }}</td>
   <td>{{ goals[i][0] }} </td>
   <td>{{ studied[i][0] }}</td>
   <td>{{ done[i] }} %</td>
@@ -38,8 +38,8 @@ Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
 <h3>Merkitse kurssi suoritetuksi</h3>
 Suoritettu kurssi: 
 <select name="course" method="GET" action="/" required>
-    {% for course in studentcourses %}
-    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% for i in range(studentcourses|length) %}
+    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
     {% endfor %}
 </select>
 <p>
@@ -50,8 +50,8 @@ Suoritettu kurssi:
 <h3>Muuta suunnitelmaa</h3>
 Muutettava kurssi: 
 <select name="course" method="GET" action="/" required>
-    {% for course in studentcourses %}
-    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% for i in range(studentcourses|length) %}
+    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
     {% endfor %}
 </select>
 <p>
@@ -64,8 +64,8 @@ Uusi suunnitelma:
 <h3>Poista kurssi suunnitelmasta</h3>
 Poistettava kurssi: 
 <select name="course" method="GET" action="/" required>
-    {% for course in studentcourses %}
-    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% for i in range(studentcourses|length) %}
+    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
     {% endfor %}
 </select>
 <p>

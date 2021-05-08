@@ -130,7 +130,7 @@ def plan():
 		goals = student.get_students_ongoing_goals(session["user_id"])
 		studied = student.get_students_ongoing_studies(session["user_id"])
 		done = student.get_done(studentcourses, goals, studied)
-		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourses=studentcourses, goals=goals, studied=studied, done=done)
+		return render_template("plan.html", course_ids=courses[0], courses=courses[1], studentcourse_ids=studentcourses[0], studentcourses=studentcourses[1], goals=goals, studied=studied, done=done)
 	else:
 		return render_template("notallowed.html")
 	
