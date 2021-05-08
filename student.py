@@ -75,7 +75,7 @@ def get_students_studies(user_id):
 def get_done(studentcourses, goals, studied):
     done = []
     for i in range(len(studentcourses)):
-        prosent = (studied[i][0] / goals[i][0]) * 100
+        prosent = (studied[i] / goals[i]) * 100
         prosent = int(prosent)
         done.append(prosent)
     return done
@@ -103,5 +103,3 @@ def add_course(course):
 	sql = "INSERT INTO courses (course) VALUES (:course)"
 	db.session.execute(sql, {"course":course})
 	db.session.commit()
-	
-	
