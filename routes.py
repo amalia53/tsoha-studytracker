@@ -110,11 +110,8 @@ def studied():
 def stats():
 	if "role" in session and session["role"] == "student":
 		studentcourses = student.get_students_courses(session["user_id"])
-		goals = student.get_students_goals(session["user_id"])
-		studied = student.get_students_studies(session["user_id"])
 		done = student.get_done(studentcourses, goals, studied)
-		completed = student.get_completed(session["user_id"])
-		return render_template("stats.html", studentcourses=studentcourses, goals=goals, studied=studied, done=done, completed=completed)
+		return render_template("stats.html", studentcourses=studentcourses[0], goals=studentcourses[1], studied=studentcourses[2], done=done, completed=studentcourses[3])
 	else:
 		return render_template("notallowed.html")
 	

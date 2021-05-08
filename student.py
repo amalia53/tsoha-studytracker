@@ -28,7 +28,7 @@ def get_course_id(course):
     course_id = result.fetchone()
     return course_id[0]
 
-def add_to_arrays(results):
+def add_to_arrays_4(results):
     result1 = []
     result2 = []
     result3 = []
@@ -39,28 +39,35 @@ def add_to_arrays(results):
         result3.append(result[2])
         result4.append(result[3])
     return result1, result2, result3, result4
+    
+def add_to_arrays_2(results):
+    result1 = []
+    result2 = []
+    for result in results:
+        result1.append(result[0])
+        result2.append(result[1])
+    return result1, result2
 
 def get_students_ongoing_courses(user_id):
     sql = "SELECT c.id, c.course, goal, studied FROM goals g JOIN courses c ON g.course_id = c.id WHERE g.user_id=:user_id AND NOT completed AND NOT deleted ORDER BY course ASC"
     results = db.session.execute(sql, {"user_id":user_id})
-    return add_to_arrays(results.fetchall())
+    return add_to_arrays_4(results.fetchall())
     
 def get_students_courses(user_id):
-    sql = "SELECT course FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted ORDER BY courses.course ASC"
-    result = db.session.execute(sql, {"user_id":user_id})
-    studentcourses = result.fetchall()
-    return studentcourses
+    sql = "SELECT course, goal, studied, completed FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted ORDER BY courses.course ASC"
+    results = db.session.execute(sql, {"user_id":user_id})
+    return add_to_arrays_4(results.fetchall())
 
 def get_courses_student_has_not_added(user_id):
     sql = "SELECT id, course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE user_id=:user_id AND NOT deleted) ORDER BY course ASC"
-    result = db.session.execute(sql, {"user_id":user_id})
-    return add_to_arrays(result.fetchall())
+    results = db.session.execute(sql, {"user_id":user_id})
+    return add_to_arrays_2(results.fetchall())
 
 def get_students_goals(user_id):
     sql = "SELECT goal, studied FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted ORDER BY courses.course ASC"
-    result = db.session.execute(sql, {"user_id":user_id})
-    return add_to_arrays(result.fetchall())
-    
+    results = db.session.execute(sql, {"user_id":user_id})
+    return add_to_arrays(results.fetchall())
+
 def get_students_studies(user_id):
     sql = "SELECT studied FROM goals JOIN courses ON goals.course_id = courses.id WHERE goals.user_id=:user_id AND NOT deleted ORDER BY courses.course ASC"
     result = db.session.execute(sql, {"user_id":user_id})
