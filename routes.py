@@ -98,7 +98,7 @@ def student_page():
 	
 @app.route("/study")
 def study():
-	if session["role"] == "student":
+	if "role" in session and session["role"] == "student":
 		courses = student.get_students_ongoing_courses(session["user_id"])
 		courses.sort()
 		return render_template("study.html", courses=courses)
@@ -112,7 +112,7 @@ def studied():
 	
 @app.route("/stats")
 def stats():
-	if session["role"] == "student":
+	if "role" in session and session["role"] == "student":
 		studentcourses = student.get_students_courses(session["user_id"])
 		goals = student.get_students_goals(session["user_id"])
 		studied = student.get_students_studies(session["user_id"])
@@ -124,7 +124,7 @@ def stats():
 	
 @app.route("/plan")
 def plan():
-	if session["role"] == "student":
+	if "role" in session and session["role"] == "student":
 		courses = student.get_courses_student_has_not_added(session["user_id"])
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
 		goals = student.get_students_ongoing_goals(session["user_id"])
@@ -157,7 +157,7 @@ def delete_from_plan():
 	
 @app.route("/teacher")
 def teacher_page():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		results = teacher.get_ongoing_courses_table(session["user_id"])
 		courses = results[0]
 		student_counts = results[1]
@@ -168,7 +168,7 @@ def teacher_page():
 
 @app.route("/grade")
 def grade():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		courses = teacher.get_teachers_ongoing_courses(session["user_id"])
 		courses.sort()
 		return render_template("grade.html", courses=courses)
@@ -177,7 +177,7 @@ def grade():
 	
 @app.route("/selectcourse", methods=["POST"])
 def select_course():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		session["course"] = request.form["course"]
 		return redirect("/gradecourse")
 	else:
@@ -185,7 +185,7 @@ def select_course():
 	
 @app.route("/gradecourse")
 def grade_course():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		students = teacher.get_students_from_course(session["course"])
 		return render_template("grade_course.html", students=students)
 	else:
@@ -193,7 +193,7 @@ def grade_course():
 	
 @app.route("/addgrade", methods=["POST"])
 def add_grade():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
 		return redirect("/gradecourse")
 	else:
@@ -201,7 +201,7 @@ def add_grade():
 
 @app.route("/graded", methods=["POST"])
 def graded():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		del session["course"]
 		return redirect("/grade")
 	else:
@@ -209,7 +209,7 @@ def graded():
 	
 @app.route("/teacherstats")
 def teacher_stats():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		results = get_stats_table(session["user_id"])
 		return render_template("teacher_stats.html", courses=results[0], student_counts=results[1], grade=results[2], studied=results[3])
 	else:
@@ -227,7 +227,7 @@ def courses_page():
 	
 @app.route("/courseadded", methods=["POST"])
 def course_added():
-	if session["role"] == "teacher":
+	if "role" in session and session["role"] == "teacher":
 		teacher.add_course(request.form["course"], session["user_id"])
 	else:
 		student.add_course(request.form["course"])
