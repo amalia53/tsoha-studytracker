@@ -72,9 +72,9 @@ def get_students_studies(user_id):
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchall() 
 
-def get_done(studentcourses, goals, studied):
+def get_done(goals, studied):
     done = []
-    for i in range(len(studentcourses)):
+    for i in range(len(goals)):
         prosent = (studied[i] / goals[i]) * 100
         prosent = int(prosent)
         done.append(prosent)
