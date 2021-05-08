@@ -53,7 +53,7 @@ def add_to_arrays(results):
     return result1, result2
 
 def get_courses_student_has_not_added(user_id):
-    sql = "SELECT id, course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE user_id=:user_id AND NOT deleted ORDER BY course ASC)"
+    sql = "SELECT id, course FROM courses WHERE NOT id IN (SELECT course_id FROM goals WHERE user_id=:user_id AND NOT deleted) ORDER BY course ASC"
     result = db.session.execute(sql, {"user_id":user_id})
     return add_to_arrays(result.fetchall())
 

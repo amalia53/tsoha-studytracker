@@ -22,8 +22,8 @@
 <h3>Aloita uusi kurssi</h3>
 Valitse kurssi: 
 <select name="course" method="GET" action="/">
-    {% for course in courses %}
-    <option value= "{{ course_ids }}" SELECTED> {{ course }}
+    {% for i in range(courses|length)  %}
+    <option value= "{{ course_id[i] }}" SELECTED> {{ course[i] }}
     {% endfor %}
 </select>
 <p>
