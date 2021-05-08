@@ -100,7 +100,7 @@ def student_page():
 def study():
 	if "role" in session and session["role"] == "student":
 		courses = student.get_students_ongoing_courses(session["user_id"])
-		return render_template("study.html", courses=courses[1])
+		return render_template("study.html", course_ids=courses[0], courses=courses[1])
 	else:
 		return render_template("notallowed.html")
 	
@@ -117,7 +117,7 @@ def stats():
 		studied = student.get_students_studies(session["user_id"])
 		done = student.get_done(studentcourses, goals, studied)
 		completed = student.get_completed(session["user_id"])
-		return render_template("stats.html", studentcourses=studentcourses[1], goals=goals, studied=studied, done=done, completed=completed)
+		return render_template("stats.html", studentcourses=studentcourses, goals=goals, studied=studied, done=done, completed=completed)
 	else:
 		return render_template("notallowed.html")
 	
