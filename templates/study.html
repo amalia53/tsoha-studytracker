@@ -1,18 +1,47 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<p>
+<p>
+<p>
 <title>Opiskele</title>
-<h1>Opiskele</h1>
-<p>
-<form action="/studied" method="POST">
-Kauanko opiskelit?
-<input type="number" name="studied" size="3" required> tuntia
-<p>
-Mitä kurssia?
-<select name="course" method="GET" action="/" required>
-    {%  for i in range(courses|length) %}
-    <option value= "{{ course_ids[i] }}" SELECTED> {{ courses[i] }}
-    {% endfor %}
-</select> 
-<p>
-<input type="submit" value="Lisää">
-</form>
-<p>
-<a href="/student">Oma sivu</a>
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light">
+    <a class="navbar-brand" href="/student">Oma sivu</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/study">Opiskele</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/plan">Suunnittele</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/stats">Tilastot</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/courses">Kurssit</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Kirjaudu ulos</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col-12">
+	<h1>Opiskele</h1>
+	<p>
+	<form action="/studied" method="POST">
+	Kauanko opiskelit?
+	<input type="number" name="studied" size="3" required> tuntia
+	<p>
+	Mitä kurssia?
+	<select name="course" method="GET" action="/" required>
+	    {%  for i in range(courses|length) %}
+	    <option value= "{{ course_ids[i] }}" SELECTED> {{ courses[i] }}
+	    {% endfor %}
+	</select> 
+	<p>
+	<input type="submit" value="Lisää">
+	</form>
+	<p>
+    </div>
+  </div>
+</div>

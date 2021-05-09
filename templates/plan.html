@@ -19,6 +19,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/courses">Kurssit</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Kirjaudu ulos</a>
+      </li>
     </ul>
   </nav>
   <div class="row">
@@ -80,7 +83,6 @@
 	<p>
 	<p>
 	Uusi suunnitelma:
-	<p>
 	<input type="number" name="goal" size="3" required>
 	<p>
 	<input type="submit" value="Muuta suunnitelmaa">
@@ -98,9 +100,6 @@
 	<input type="submit" value="Poista kurssi">
 	</form>
 	{% endif %}
-	<p>
-	<p>
-	<a href="/student">Oma sivu</a>
     </div>
     <div class="col-4">
 	<h1>Suunnitelma</h1>
@@ -122,3 +121,6 @@
 	{% endfor %}
 	</table>
 	<p>
+    </div>
+  </div>
+</div>
