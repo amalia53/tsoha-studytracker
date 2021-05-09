@@ -21,12 +21,6 @@ def delete_from_plan(course_id, user_id):
     sql = "UPDATE goals SET deleted = NOT deleted WHERE user_id=:user_id AND course_id=:course_id"
     db.session.execute(sql, {"user_id":user_id, "course_id":course_id})
     db.session.commit()
-    
-def get_course_id(course):
-    sql = "SELECT id FROM courses WHERE course=:course"
-    result = db.session.execute(sql, {"course":course})
-    course_id = result.fetchone()
-    return course_id[0]
 
 def add_to_arrays_4(results):
     result1 = []
