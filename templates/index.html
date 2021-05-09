@@ -1,43 +1,50 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <title>Study Tracker</title>
-<h1>Study Tracker</h1>
-<h2>Tervetuloa Study Tracker -sovellukseen!</h2>
-<p>
-Study Tracker on opintojen suunnittelua ja seuraamista helpottava sovellus.<p>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+	<h1>Study Tracker</h1>
+	<h2>Tervetuloa Study Tracker -sovellukseen!</h2>
+	<p>
+	Study Tracker on opintojen suunnittelua ja seuraamista helpottava sovellus.<p>
 
-Sovelluksessa opiskelija voi lisätä ja seurata eri kursseihin käytettyä aikaa. Lisäksi opiskelija voi asettaa tavoitteita kursseille ja seurata tavoitteissa pysymistä.<p>
+	Sovelluksessa opiskelija voi lisätä ja seurata eri kursseihin käytettyä aikaa. Lisäksi opiskelija voi asettaa tavoitteita kursseille ja seurata tavoitteissa pysymistä.<p>
 
-Sovellukseen voi tulevaisuudessa kirjautua myös opettajana.
+	Sovellukseen voi kirjautua myös opettajana. Opettaja voi seurata opettamiensa kurssien esitymistä ja arvostella kurssejaan.
+	<p>
+    </div>
+    <div class="col-4">
+	{% if session.user_id %}
+	<b>Olet kirjautuneena käyttäjällä {{ username }} </b>
+	<p>
+	{% if session.role == "student" %}
+	<a href="/student">Siirry omalle sivulle</a>
+	{% else %}
+	<a href="/teacher">Siirry omalle sivulle</a>
+	{% endif %}
+	<p>
+	<a href="/logout">Kirjaudu ulos</a>
+	<p>
 
-<p>
+	{% else %}
+	<form action="/login" method="POST">
+	<h1>Kirjaudu sisään</h1>
+	<p>
+	Käyttäjätunnus: <input type=text name="username" size="30" required> 
+	<p>
+	Salasana: <input type="password" name="password" size=30 required>
+	<p>
+	<input type="submit" value="Kirjaudu">
+	</form>
 
-{% if session.user_id %}
-<b>Olet kirjautuneena käyttäjällä {{ username }} </b>
-<p>
-{% if session.role == "student" %}
-<a href="/student">Siirry omalle sivulle</a>
-{% else %}
-<a href="/teacher">Siirry omalle sivulle</a>
-{% endif %}
-<p>
-<a href="/logout">Kirjaudu ulos</a>
-<p>
-
-{% else %}
-<form action="/login" method="POST">
-<h1>Kirjaudu sisään</h1>
-<p>
-Käyttäjätunnus: <input type=text name="username" size="30" required> 
-<p>
-Salasana: <input type="password" name="password" size=30 required>
-<p>
-<input type="submit" value="Kirjaudu">
-</form>
-
-<p>
-<h3>Eikö vielä tunnusta?</h3>
-Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>!
-<p>
-Oletko opettaja? Rekisteröidy <a href="/teachreg">täällä</a>!
-<p>
-{% endif %}
+	<p>
+	<h3>Eikö vielä tunnusta?</h3>
+	Oletko oppilas? Rekisteröidy <a href="/stureg">täällä</a>!
+	<p>
+	Oletko opettaja? Rekisteröidy <a href="/teachreg">täällä</a>!
+	<p>
+	{% endif %}
+    </div>
+  </div>
+</div>
 

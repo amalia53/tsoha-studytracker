@@ -16,7 +16,7 @@ def get_teacher_id(user_id):
 def get_teachers_ongoing_courses(user_id):
 	# teacher_id = get_teacher_id(user_id)
 	# sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
-	sql = "SELECT courses.id, course FROM courses, teachers, goals WHERE teachers.user_id=:user_id AND teacher_id=teachers.id AND grade IS NULL"
+	sql = "SELECT DISTINCT courses.id, course FROM courses, teachers, goals WHERE teachers.user_id=:user_id AND teacher_id=teachers.id AND grade IS NULL"
 	results = db.session.execute(sql, {"user_id":user_id})
 	return student.add_to_arrays_2(results.fetchall())
 
