@@ -40,7 +40,7 @@ def get_ongoing_courses_table(user_id):
 	return courses, counts
 
 def get_stats_table(user_id):
-	sql = "SELECT c.course FROM courses c, teachers t WHERE t.user_id=:user_id AND t.id=c.teacher_id ORDER BY c.course ASC"
+	sql = "SELECT c.id, c.course FROM courses c, teachers t WHERE t.user_id=:user_id AND t.id=c.teacher_id ORDER BY c.course ASC"
 	result = db.session.execute(sql, {"user_id":user_id})
 	results = result.fetchall()
 	courses = []
@@ -51,6 +51,7 @@ def get_stats_table(user_id):
 		sql = "SELECT AVG(grade), COUNT(user_id), AVG(studied) FROM goals WHERE course_id=:course_id AND NOT deleted"
 		result = db.session.execute(sql, {"course_id":course[0]})
 		course_results = result.fetchall()
+		print(course_results)
 		courses.append(course[1])
 		grades.append(course_results[0])
 		counts.append(course_results[1])
