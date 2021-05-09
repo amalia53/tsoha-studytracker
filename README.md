@@ -9,8 +9,6 @@ Sovelluksessa voi tarkastella kaikkia kursseja ja nähdä kaikkien opiskelijoide
 
 Sovellukseen voi kirjautua myös opettajana ja lisätä opiskelijoilleen arvosanat. Lisäksi opettaja näkee omista opetetuista kursseistaan käytetyn ajan ja arvosanojen keskiarvon.
 
-**Herokussa olevassa versiossa voi tällä hetkellä rekisteröityä ja kirjautua opiskelijana ja opettajana. Opiskelija voi selata ja lisätä kursseja sovellukseen, valita kursseja opiskeltavaksi, suunnnitella kurssin opiskeluun käytettävän ajan ja lisätä opiskeltuja tunteja. Lisäksi opiskelija voi muokata suunnitelmaa tai merkitä kurssin suoritetuksi. Opettaja voi lisätä kursseja sovellukseen.**
-
 ## Sovelluksen käyttö
 
 Pääset käyttämään sovellusta osoitteesta [https://tsoha-studytracker.herokuapp.com/](https://tsoha-studytracker.herokuapp.com/)
@@ -30,31 +28,24 @@ uniikki, tähän sopii hyvin esimerkiksi opiskelijanumero.
 
 ### Oma sivu
 
-Kirjautumisen jälkeen opiskelija näkee oman sivun, jossa näkee käynnissä olevat kurssinsa ja tällä viikolla kursille käytetyn ajan ja paljonko saavutettu
-viikottaisesta tavoitteesta prosentteina.
-Lisäksi sivulta löytyy linkit sivuille: "opiskele", "suunnittele", "tilastot" ja "kurssit.
+Kirjautumisen jälkeen opiskelija näkee oman sivun, jossa näkee käynnissä olevat kurssinsa ja kursille käytetyn ajan ja paljonko saavutettu tavoitteesta prosentteina.
+Lisäksi sivulta löytyy valikko, josta voi siirtyä sivuille: "opiskele", "suunnittele", "tilastot" ja "kurssit. Valikosta voi möys kirjautua ulos.
 
 ### Opiskele
 
-Lisää kurssien opiskeluihin käytettyä aikaa.
+Lisää kurssien opiskeluihin käytettyä aikaa tunteina.
 
 ### Suunnittele
 
-Luo viikolle opintotavoite ja tarkasta miten tavoitteessa on pysytty. Lisää uusi kurssi, muokkaa suunnitelmaa tai merkitse käymäsi kurssi suoritetuksi. 
-
-**Herokussa voi tällä hetkellä lisätä uuden kurssin ja sille opiskelutavoitteen ja seurata kurssin tavoitteen edistymistä. Kurssin tavoitetta voi myös muuttaa tai poistaa kurssisuunnitelmaa tai merkitä kurssin suoritetuksi. **
+Lisää uusi kurssi ja sille opiskelutavoite, muokkaa suunnitelmaa tai merkitse käymäsi kurssi suoritetuksi.Lisäksi kurssin voi poistaa käynnissä olevista kursseista
 
 ### Tilastot
 
-Kurssikohtaiset tilastot eri ajanjaksoilta opiskelujen määristä. Arvosana näkyy täällä, kun kurssi on suoritettu.
-
-**Tilastoissa näkyy kaikki opiskelija kurssit ja niiden suunnitelmat ja onko kurssit suoritettu.**
+Kurssikohtaiset tilastot opiskelijan kaikista kursseista, myös suoritetuista. Arvosana näkyy täällä, kun kurssi on suoritettu ja arvosteltu opettajan toimesta.
 
 ### Kurssit
 
-Lista kaikista sovelluksessa olevista kursseista ja niihin käytettyjen opiskelutuntien keskiarvosta (kun kurssi on kokonaan suoritettu). Opiskelija tai opettaja voivat lisätä kurssin listaan.
-
-**Herokussa tällä hetkellä voi selata kurssien nimiä ja lisätä uuden kurssin listaan.**
+Lista kaikista sovelluksessa olevista kursseista ja opiskelija voi lisätä kurssin listaan. Mikäli opiskelija lisää kurssin, kurssille ei merkitä opettajaa.
 
 ## Opettaja
 
@@ -62,30 +53,24 @@ Lista kaikista sovelluksessa olevista kursseista ja niihin käytettyjen opiskelu
 
 Opettajan tarvitsee antaa rekisteröityäkseen uniikki käyttäjätunnus, kursseissa näkyvä opettajan nimi, uusi salasana, sama salasana uudestaan ja vain opettajien tiedossa oleva koodi.
 
-**Herokussa opettajan rekisteröitymistä varten koodi on 4278**
+**Opettajan rekisteröitymistä varten koodi on 4278**
 
 ### Oma sivu
 
-Sivulla näkyy opetettavat kurssit ja linkit sivuille: "arvostele", "tilastot" ja "kurssit"
-
-**Herokussa näkyy tällä hetkellä vain linkit arvostele ja kurssit-sivulle**
+Sivulla näkyy opetettavat kurssit ja valikko, josta voi siirtyä sivuille: "arvostele", "tilastot" ja "kurssit". Valikosta voi myös kirjautua ulos.
 
 ### Arvostele
 
-Lisää arvosanat opiskelijoille suoritetusta kurssista ja merkitse kurssi suoritetuksi. Tällöin kurssi poistuu opetettavista kursseista.
-
-**Ei vielä toteutettu Herokussa**
+Lisää arvosanat opiskelijoille kurssista.
 
 ### Tilastot
 
-Arvosteltujen kurssien keskiarvoiset opiskelutuntimäärät ja arvosanat.
-
-**Ei vielä toteutettu Herokussa**
+Opettajan kurssien keskiarvoiset opiskelutuntimäärät ja arvosanat.
 
 ### Kurssit
 
-Lista kaikista sovelluksessa olevista kursseista ja niihin käytettyjen opiskelutuntien keskiarvosta (kun kurssi on kokonaan suoritettu). 
+Lista kaikista sovelluksessa olevista kursseista ja opettaja voi lisätä oman kurssinsa listaan. Mikäli opettaja lisää kurssin, kurssille merkitään automaattisesti lisännyt opettaja opettajaksi.
 
-**Näkyy lista kursseista ja opettaja voi lisätä omia kursseja**
+## Jatkokehitysideoita
 
-
+Opiskelutavoitteita voisi tehdä eri ajanjaksoille ja opiskelusessioihin merkattaisiin päivämäärä.
