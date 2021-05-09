@@ -194,7 +194,7 @@ def graded():
 def teacher_stats():
 	if "role" in session and session["role"] == "teacher":
 		results = teacher.get_stats_table(session["user_id"])
-		return render_template("teacher_stats.html", courses=results[0], student_counts=results[1], grade=results[2], studied=results[3])
+		return render_template("teacher_stats.html", courses=results[0], student_counts=results[1], grades=results[2], studies=results[3])
 	else:
 		return render_template("notallowed.html")
 
