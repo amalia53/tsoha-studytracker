@@ -50,7 +50,7 @@ def get_stats_table(user_id):
 		result = db.session.execute(sql, {"course_id":course[0]})
 		course_results = result.fetchall()
 		courses.append(course[1])
-		if grade != None:
+		if course_results[0][0] != None:
 			grades.append(round(course_results[0][0],1))
 		counts.append(course_results[0][1])
 		studies.append(round(course_results[0][2],1))
