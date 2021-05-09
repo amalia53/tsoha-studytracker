@@ -104,7 +104,7 @@
     <div class="col-6">
 	<h1>Suunnitelma</h1>
 	<p>
-	<table>
+	<table class="styled-table">
 	<tr>
 	  <th>Omat kurssit</th>
 	  <th>Tavoite</th>
@@ -124,3 +124,26 @@
     </div>
   </div>
 </div>
+
+<style>
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+</style>
