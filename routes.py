@@ -162,8 +162,8 @@ def grade():
 	else:
 		return render_template("notallowed.html")
 	
-@app.route("/selectcourse", methods=["POST"])
-def select_course():
+@app.route("/courseselected", methods=["POST"])
+def course_selected():
 	session["course_id"] = request.form["course"]
 	return redirect("/gradecourse")
 	
