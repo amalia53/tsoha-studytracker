@@ -27,13 +27,17 @@
 	<p>
 	<table class="styled-table">
 	<tr>
-	  <th>Opetettavat kurssit</th>
-	  <th>Opiskelijoita</th>
+	  <th>Kurssi</th>
+	  <th>Oppilaita</th>
+	  <th>Arvosanojen keskiarvo</th>
+	  <th>Opiskelutuntien keskiarvo</th>
 	<tr>
 	{% for i in range(courses|length) %}
 	<tr>
 	  <td>{{ courses[i] }}</td>
 	  <td>{{ student_counts[i] }} </td>
+	  <td>{{ grades[i] }}</td>
+	  <td>{{ studies[i] }}</td>
 	<tr>
 	{% endfor %}
 	</table>
