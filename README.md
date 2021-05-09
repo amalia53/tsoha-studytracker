@@ -57,15 +57,11 @@ Opettajan tarvitsee antaa rekisteröityäkseen uniikki käyttäjätunnus, kursse
 
 ### Oma sivu
 
-Sivulla näkyy opetettavat kurssit ja valikko, josta voi siirtyä sivuille: "arvostele", "tilastot" ja "kurssit". Valikosta voi myös kirjautua ulos.
+Sivulla näkyy taulukko opettajan kursseista, niiden arvosanojen ja opiskeluajankäytön keskiarvoista. Lisäksi on valikko, josta voi siirtyä sivuille: "arvostele" ja "kurssit". Valikosta voi myös kirjautua ulos.
 
 ### Arvostele
 
 Lisää arvosanat opiskelijoille kurssista.
-
-### Tilastot
-
-Opettajan kurssien keskiarvoiset opiskelutuntimäärät ja arvosanat.
 
 ### Kurssit
 
@@ -74,3 +70,9 @@ Lista kaikista sovelluksessa olevista kursseista ja opettaja voi lisätä oman k
 ## Jatkokehitysideoita
 
 Opiskelutavoitteita voisi tehdä eri ajanjaksoille ja opiskelusessioihin merkattaisiin päivämäärä.
+
+Opettajalle mahdollisuus ottaa jo lisättyjä kursseja omakseen ja muokata niitä. 
+
+Kurssilistauksessa enemmän tietoja (kuten opettajan nimi, käytetyn ajan keskiarvo)
+
+Opettajalle enemmän 
