@@ -156,7 +156,6 @@ def teacher_page():
 
 @app.route("/grade")
 def grade():
-	print(session["role"])
 	if "role" in session and session["role"] == "teacher":
 		courses = teacher.get_teachers_ongoing_courses(session["user_id"])
 		return render_template("grade.html", course_ids=courses[0], courses=courses[1])
