@@ -44,12 +44,6 @@
 	<hr>
 	{% endfor %}
 	<p>
-	{% if session.role == "student" %}
-	<a href="/student">Oma sivu</a>
-	{% else %}
-	<a href="/teacher">Oma sivu</a>
-	{% endif %}
-	<p>
     </div>
     <div class="col-4">
 	<form action="/courseadded" method="POST">
