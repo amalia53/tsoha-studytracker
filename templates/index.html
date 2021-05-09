@@ -22,8 +22,10 @@
 	<b>Olet kirjautuneena käyttäjällä {{ username }} </b>
 	<p>
 	{% if session.role == "student" %}
+	<p>
 	<a href="/student">Siirry omalle sivulle</a>
 	{% else %}
+	<p>
 	<a href="/teacher">Siirry omalle sivulle</a>
 	{% endif %}
 	<p>
