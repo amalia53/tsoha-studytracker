@@ -1,76 +1,102 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<p>
+<p>
+<p>
 <title>Sunnitelma</title>
-<h1>Suunnitelma</h1>
-<p>
-<table>
-<tr>
-  <th>Omat kurssit</th>
-  <th>Tavoite</th>
-  <th>Opiskeltu</th>
-  <th>Tehtynä</th>
-<tr>
-{% for i in range(studentcourses|length) %}
-<tr>
-  <td>{{ studentcourses[i] }}</td>
-  <td>{{ goals[i] }} </td>
-  <td>{{ studied[i] }}</td>
-  <td>{{ done[i] }} %</td>
-<tr>
-{% endfor %}
-</table>
-<p>
-<form action="/startcourse" method="POST">
-<h3>Aloita uusi kurssi</h3>
-Valitse kurssi: 
-<select name="course" method="GET" action="/">
-    {% for i in range(courses|length)  %}
-    <option value= "{{ course_ids[i] }}" SELECTED> {{ courses[i] }}
-    {% endfor %}
-</select>
-<p>
-Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
-<input type="number" name="goal" size="3" required>
-<p>
-<input type="submit" value="Aloita kurssi">
-</form>
-<p>
-{% if studentcourses|length > 0 %}
-<form action="/coursedone" method="POST">
-<h3>Merkitse kurssi suoritetuksi</h3>
-Suoritettu kurssi: 
-<select name="course" method="GET" action="/" required>
-    {% for i in range(studentcourses|length) %}
-    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
-    {% endfor %}
-</select>
-<p>
-<input type="submit" value="Kurssi suoritettu">
-</form>
-<p>
-<form action="/changegoal" method="POST">
-<h3>Muuta suunnitelmaa</h3>
-Muutettava kurssi: 
-<select name="course" method="GET" action="/" required>
-    {% for i in range(studentcourses|length) %}
-    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
-    {% endfor %}
-</select>
-<p>
-Uusi suunnitelma:
-<input type="number" name="goal" size="3" required>
-<p>
-<input type="submit" value="Muuta suunnitelmaa">
-</form>
-<form action="/deletefromplan" method="POST">
-<h3>Poista kurssi suunnitelmasta</h3>
-Poistettava kurssi: 
-<select name="course" method="GET" action="/" required>
-    {% for i in range(studentcourses|length) %}
-    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
-    {% endfor %}
-</select>
-<p>
-<input type="submit" value="Poista kurssi">
-</form>
-{% endif %}
-<p>
-<a href="/student">Oma sivu</a>
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light">
+    <a class="navbar-brand" href="/student">Oma sivu</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/study">Opiskele</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/plan">Suunnittele</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/stats">Tilastot</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/courses">Kurssit</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="row">
+    <div class="col-8">
+	<form action="/startcourse" method="POST">
+	<h3>Aloita uusi kurssi</h3>
+	Valitse kurssi: 
+	<select name="course" method="GET" action="/">
+	    {% for i in range(courses|length)  %}
+	    <option value= "{{ course_ids[i] }}" SELECTED> {{ courses[i] }}
+	    {% endfor %}
+	</select>
+	<p>
+	Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
+	<input type="number" name="goal" size="3" required>
+	<p>
+	<input type="submit" value="Aloita kurssi">
+	</form>
+	<p>
+	{% if studentcourses|length > 0 %}
+	<form action="/coursedone" method="POST">
+	<h3>Merkitse kurssi suoritetuksi</h3>
+	Suoritettu kurssi: 
+	<select name="course" method="GET" action="/" required>
+	    {% for i in range(studentcourses|length) %}
+	    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
+	    {% endfor %}
+	</select>
+	<p>
+	<input type="submit" value="Kurssi suoritettu">
+	</form>
+	<p>
+	<form action="/changegoal" method="POST">
+	<h3>Muuta suunnitelmaa</h3>
+	Muutettava kurssi: 
+	<select name="course" method="GET" action="/" required>
+	    {% for i in range(studentcourses|length) %}
+	    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
+	    {% endfor %}
+	</select>
+	<p>
+	Uusi suunnitelma:
+	<input type="number" name="goal" size="3" required>
+	<p>
+	<input type="submit" value="Muuta suunnitelmaa">
+	</form>
+	<form action="/deletefromplan" method="POST">
+	<h3>Poista kurssi suunnitelmasta</h3>
+	Poistettava kurssi: 
+	<select name="course" method="GET" action="/" required>
+	    {% for i in range(studentcourses|length) %}
+	    <option value= "{{ studentcourse_ids[i] }}" SELECTED> {{ studentcourses[i] }}
+	    {% endfor %}
+	</select>
+	<p>
+	<input type="submit" value="Poista kurssi">
+	</form>
+	{% endif %}
+	<p>
+	<a href="/student">Oma sivu</a>
+    </div>
+    <div class="col-4">
+	<h1>Suunnitelma</h1>
+	<p>
+	<table>
+	<tr>
+	  <th>Omat kurssit</th>
+	  <th>Tavoite</th>
+	  <th>Opiskeltu</th>
+	  <th>Tehtynä</th>
+	<tr>
+	{% for i in range(studentcourses|length) %}
+	<tr>
+	  <td>{{ studentcourses[i] }}</td>
+	  <td>{{ goals[i] }} </td>
+	  <td>{{ studied[i] }}</td>
+	  <td>{{ done[i] }} %</td>
+	<tr>
+	{% endfor %}
+	</table>
+	<p>
