@@ -51,7 +51,7 @@ def get_stats_table(user_id):
 		sql = "SELECT AVG(grade), COUNT(user_id), AVG(studied) FROM goals WHERE course_id=:course_id AND NOT deleted"
 		result = db.session.execute(sql, {"course_id":course[0]})
 		course_results = result.fetchall()
-		print(course_results)
+		print(course_results[1])
 		courses.append(course[1])
 		grades.append(course_results[0])
 		counts.append(course_results[1])
