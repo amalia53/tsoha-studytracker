@@ -5,8 +5,8 @@
 Arvosteltava kurssi:
 <p>
 <select name="course" method="GET" action="/" required>
-    {% for course in courses %}
-    <option value= "{{ course[0] }}" SELECTED> {{ course[0] }}
+    {% for i in range(courses|length) %}
+    <option value= "{{ course_ids[i] }}" SELECTED> {{ courses[i] }}
     {% endfor %}
 </select> 
 <p>

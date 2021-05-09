@@ -14,20 +14,20 @@ def get_teacher_id(user_id):
 	return teacher_id[0]
 	
 def get_teachers_ongoing_courses(user_id):
-	teacher_id = get_teacher_id(user_id)
-	sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
-	result = db.session.execute(sql, {"teacher_id":teacher_id})
-	return result.fetchall()
+	# teacher_id = get_teacher_id(user_id)
+	# sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
+	sql = "SELECT courses.id, course FROM courses, teachers WHERE user_id=:user_id AND teacher_id=teachers.id"
+	results = db.session.execute(sql, {"teacher_id":teacher_id})
+	return student.add_to_arrays_2(results.fetchall())
 
-def get_students_from_course(course):
-	course_id = student.get_course_id(course)
+def get_students_from_course(course_id):
 	sql = "SELECT user_id FROM goals WHERE course_id=:course_id AND NOT deleted AND grade IS NULL"
 	result = db.session.execute(sql, {"course_id":course_id})
 	return result.fetchall()
 
 def get_ongoing_courses_table(user_id):
 	teacher_id = get_teacher_id(user_id)
-	sql = "SELECT course, id FROM courses WHERE teacher_id=:teacher_id"
+	sql = "SELECT course, id FROM courses WHERE teacher_id=:teacher_id ORDER BY course ASC"
 	result = db.session.execute(sql, {"teacher_id":teacher_id})
 	results = result.fetchall()
 	counts = []
@@ -41,7 +41,7 @@ def get_ongoing_courses_table(user_id):
 	return courses, counts
 
 def get_stats_table(user_id):
-	sql = "SELECT c.id, c.course FROM courses c, teachers t WHERE t.user_id=:user_id AND t.id=c.teacher_id"
+	sql = "SELECT c.id, c.course FROM courses c, teachers t WHERE t.user_id=:user_id AND t.id=c.teacher_id ORDER BY c.course ASC"
 	result = db.session.execute(sql, {"user_id":user_id})
 	results = result.fetchall()
 	courses = []
@@ -58,8 +58,7 @@ def get_stats_table(user_id):
 		studies.append(course_results[2])
 	return courses, counts, grades, studied
 
-def add_grade(student_id, course, grade):
-	course_id = student.get_course_id(course)
+def add_grade(student_id, course_id, grade):
 	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id AND NOT deleted"
 	db.session.execute(sql, {"grade":grade, "course_id":course_id, "user_id":student_id})
 	db.session.commit()

@@ -160,32 +160,32 @@ def teacher_page():
 def grade():
 	if "role" in session and session["role"] == "teacher":
 		courses = teacher.get_teachers_ongoing_courses(session["user_id"])
-		return render_template("grade.html", courses=courses)
+		return render_template("grade.html", course_ids=courses[0], courses=courses[1])
 	else:
 		return render_template("notallowed.html")
 	
 @app.route("/selectcourse", methods=["POST"])
 def select_course():
-	session["course"] = request.form["course"]
+	session["course_id"] = request.form["course"]
 	return redirect("/gradecourse")
 	
 @app.route("/gradecourse")
 def grade_course():
 	if "role" in session and session["role"] == "teacher":
-		students = teacher.get_students_from_course(session["course"])
+		students = teacher.get_students_from_course(session["course_id"])
 		return render_template("grade_course.html", students=students)
 	else:
 		return render_template("notallowed.html")
 	
 @app.route("/addgrade", methods=["POST"])
 def add_grade():
-	teacher.add_grade(request.form["student"], session["course"], request.form["grade"])
+	teacher.add_grade(request.form["student"], session["course_id"], request.form["grade"])
 	return redirect("/gradecourse")
 
 @app.route("/graded", methods=["POST"])
 def graded():
 	if "role" in session and session["role"] == "teacher":
-		del session["course"]
+		del session["course_id"]
 		return redirect("/grade")
 	else:
 		return render_template("notallowed.html")
@@ -193,7 +193,7 @@ def graded():
 @app.route("/teacherstats")
 def teacher_stats():
 	if "role" in session and session["role"] == "teacher":
-		results = get_stats_table(session["user_id"])
+		results = teacher.get_stats_table(session["user_id"])
 		return render_template("teacher_stats.html", courses=results[0], student_counts=results[1], grade=results[2], studied=results[3])
 	else:
 		return render_template("notallowed.html")
