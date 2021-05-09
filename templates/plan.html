@@ -24,7 +24,10 @@
   <div class="row">
     <div class="col-8">
 	<form action="/startcourse" method="POST">
+	<h1>Suunnittele</h1>
+	<p>
 	<h3>Aloita uusi kurssi</h3>
+	<p>
 	Valitse kurssi: 
 	<select name="course" method="GET" action="/">
 	    {% for i in range(courses|length)  %}
@@ -32,15 +35,21 @@
 	    {% endfor %}
 	</select>
 	<p>
+	<p>
 	Suunniteltu kurssin opiskeluun käytettävä tuntimäärä:
 	<input type="number" name="goal" size="3" required>
 	<p>
 	<input type="submit" value="Aloita kurssi">
 	</form>
 	<p>
+	<p>
+	<p>
+	<p>
+	<p>
 	{% if studentcourses|length > 0 %}
 	<form action="/coursedone" method="POST">
 	<h3>Merkitse kurssi suoritetuksi</h3>
+	<p>
 	Suoritettu kurssi: 
 	<select name="course" method="GET" action="/" required>
 	    {% for i in range(studentcourses|length) %}
@@ -48,11 +57,17 @@
 	    {% endfor %}
 	</select>
 	<p>
+	<p>
 	<input type="submit" value="Kurssi suoritettu">
 	</form>
 	<p>
+	<p>
+	<p>
+	<p>
+	<p>
 	<form action="/changegoal" method="POST">
 	<h3>Muuta suunnitelmaa</h3>
+	<p>
 	Muutettava kurssi: 
 	<select name="course" method="GET" action="/" required>
 	    {% for i in range(studentcourses|length) %}
@@ -60,7 +75,12 @@
 	    {% endfor %}
 	</select>
 	<p>
+	<p>
+	<p>
+	<p>
+	<p>
 	Uusi suunnitelma:
+	<p>
 	<input type="number" name="goal" size="3" required>
 	<p>
 	<input type="submit" value="Muuta suunnitelmaa">
@@ -74,9 +94,11 @@
 	    {% endfor %}
 	</select>
 	<p>
+	<p>
 	<input type="submit" value="Poista kurssi">
 	</form>
 	{% endif %}
+	<p>
 	<p>
 	<a href="/student">Oma sivu</a>
     </div>
