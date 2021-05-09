@@ -26,7 +26,7 @@ def get_students_from_course(course_id):
 	return result.fetchall()
 
 def get_ongoing_courses_table(user_id):
-	sql = "SELECT course, id FROM courses, teachers WHERE teacher_id=teachers.id AND user_id=:user_id ORDER BY course ASC"
+	sql = "SELECT course, courses.id FROM courses, teachers WHERE teacher_id=teachers.id AND user_id=:user_id ORDER BY course ASC"
 	result = db.session.execute(sql, {"user_id":user_id})
 	results = result.fetchall()
 	counts = []
