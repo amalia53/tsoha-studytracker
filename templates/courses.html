@@ -1,23 +1,35 @@
-<title>Kurssit</title>
-<h1>Kurssit</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <p>
-<hr>
-{% for course in courses %}
-{{ course[0] }}
-<hr>
-{% endfor %}
 <p>
-<form action="/courseadded" method="POST">
-<title>Kurssin lisäys</title>
-<h1>Lisää kurssi</h1>
 <p>
-Kurssin nimi: <input type=text name="course" size="30" required> 
-<p>
-<input type="submit" value="Lisää">
-</form>
-<p>
-{% if session.role == "student" %}
-<a href="/student">Oma sivu</a>
-{% else %}
-<a href="/teacher">Oma sivu</a>
-{% endif %}
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+	<title>Kurssit</title>
+	<h1>Kurssit</h1>
+	<p>
+	<hr>
+	{% for course in courses %}
+	{{ course[0] }}
+	<hr>
+	{% endfor %}
+	<p>
+	{% if session.role == "student" %}
+	<a href="/student">Oma sivu</a>
+	{% else %}
+	<a href="/teacher">Oma sivu</a>
+	{% endif %}
+	<p>
+    </div>
+    <div class="col-4">
+	<form action="/courseadded" method="POST">
+	<h1>Lisää kurssi</h1>
+	<p>
+	Kurssin nimi: <input type=text name="course" size="30" required> 
+	<p>
+	<input type="submit" value="Lisää">
+	</form>
+
+    </div>
+  </div>
+</div>
