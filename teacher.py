@@ -55,7 +55,7 @@ def get_stats_table(user_id):
 		grades.append(course_results[0][0])
 		counts.append(course_results[0][1])
 		studies.append(course_results[0][2])
-	return courses, counts, grades, studied
+	return courses, counts, grades, studies
 
 def add_grade(student_id, course_id, grade):
 	sql = "UPDATE goals SET grade=:grade WHERE user_id=:user_id AND course_id=:course_id AND NOT deleted"
