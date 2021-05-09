@@ -88,8 +88,7 @@ def student_page():
 	if "role" in session and session["role"] == "student":
 		studentcourses = student.get_students_ongoing_courses(session["user_id"])
 		done = student.get_done(studentcourses[2], studentcourses[3])
-		username = users.get_username(session["user_id"])
-		return render_template("student.html", studentcourses=studentcourses[1], goals=studentcourses[2], studied=studentcourses[3], done=done, username=username)
+		return render_template("student.html", studentcourses=studentcourses[1], goals=studentcourses[2], studied=studentcourses[3], done=done)
 	else:
 		return render_template("notallowed.html")
 	
@@ -151,13 +150,13 @@ def teacher_page():
 		results = teacher.get_ongoing_courses_table(session["user_id"])
 		courses = results[0]
 		student_counts = results[1]
-		username = users.get_username(session["user_id"])
-		return render_template("teacher.html", courses=courses, student_counts=student_counts, username=username)
+		return render_template("teacher.html", courses=courses, student_counts=student_counts)
 	else:
 		return render_template("notallowed.html")
 
 @app.route("/grade")
 def grade():
+	print(session["role"]
 	if "role" in session and session["role"] == "teacher":
 		courses = teacher.get_teachers_ongoing_courses(session["user_id"])
 		return render_template("grade.html", course_ids=courses[0], courses=courses[1])
