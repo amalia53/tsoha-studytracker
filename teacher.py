@@ -17,7 +17,7 @@ def get_teachers_ongoing_courses(user_id):
 	# teacher_id = get_teacher_id(user_id)
 	# sql = "SELECT course FROM courses WHERE teacher_id=:teacher_id"
 	sql = "SELECT courses.id, course FROM courses, teachers WHERE user_id=:user_id AND teacher_id=teachers.id"
-	results = db.session.execute(sql, {"teacher_id":teacher_id})
+	results = db.session.execute(sql, {"user_id":user_id})
 	return student.add_to_arrays_2(results.fetchall())
 
 def get_students_from_course(course_id):
