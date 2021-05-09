@@ -53,7 +53,8 @@ def get_stats_table(user_id):
 		if course_results[0][0] != None:
 			grades.append(round(course_results[0][0],1))
 		counts.append(course_results[0][1])
-		studies.append(round(course_results[0][2],1))
+		if course_results[0][2] != None:
+			studies.append(round(course_results[0][2],1))
 	return courses, counts, grades, studies
 
 def add_grade(student_id, course_id, grade):
