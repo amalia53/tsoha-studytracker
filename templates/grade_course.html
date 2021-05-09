@@ -1,19 +1,29 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<p>
+<p>
+<p>
 <title>Arvostele kurssi</title>
-<h1>Arvostele kurssi {{ session.course }}</h1>
-<p>
-<form action="/addgrade" method="POST">
-Opiskelija: 
-<select name="student" method="GET" action="/">
-    {% for student in students %}
-    <option value= "{{ student[0] }}" SELECTED> {{ student[0] }}
-    {% endfor %}
-</select> 
-Arvosana: 
-<input type="number" name="grade" size="3" required>
-<p>
-<input type="submit" value="Lisää arvosana">
-</form>
-<p>
-<form action="/graded" method="POST">
-<input type="submit" value="Lopeta kurssin arvostelu">
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+	<h1>Arvostele kurssi {{ session.course }}</h1>
+	<p>
+	<form action="/addgrade" method="POST">
+	Opiskelija: 
+	<select name="student" method="GET" action="/">
+	    {% for student in students %}
+	    <option value= "{{ student[0] }}" SELECTED> {{ student[0] }}
+	    {% endfor %}
+	</select> 
+	Arvosana: 
+	<input type="number" name="grade" size="3" required>
+	<p>
+	<input type="submit" value="Lisää arvosana">
+	</form>
+	<p>
+	<form action="/graded" method="POST">
+	<input type="submit" value="Lopeta kurssin arvostelu">
+	</form>
+    </div>
+  </div>
+</div>
