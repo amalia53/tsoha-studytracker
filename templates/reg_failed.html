@@ -1,10 +1,23 @@
-<title>Rekisteröityminen epäonnistui</title>
-<h1>Rekisteröityminen epäonnistui</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <p>
-Rekisteröityminen epäonnistui, sillä {{ error }}
 <p>
-{% if role == "student" %}
-<a href="/stureg">Yritä uudestaan</a>
-{% else %}
-<a href="/teachreg">Yritä uudestaan</a>
-{% endif %}
+<p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+	<title>Rekisteröityminen epäonnistui</title>
+	<p>
+	<h1>Rekisteröityminen epäonnistui</h1>
+	<p>
+	Rekisteröityminen epäonnistui, sillä {{ error }}
+	<p>
+	<p>
+	{% if role == "student" %}
+	<a href="/stureg">Yritä uudestaan</a>
+	{% else %}
+	<a href="/teachreg">Yritä uudestaan</a>
+	{% endif %}
+    </div>
+  </div>
+</div>
+
